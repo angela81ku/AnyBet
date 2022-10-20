@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AnyBet</string>
+    <string name="anybet">AnyBet</string>
+    <string name="webservice">WebService</string>
+    <string name="database">DataBase</string>
+    <string name="please_enter_a_word">Please enter a word</string>
+    <string name="search">Search</string>
 </resources>
