@@ -1,7 +1,5 @@
 package edu.northeastern.anybet;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +7,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 
@@ -68,8 +69,17 @@ public class WebServiceActivity extends AppCompatActivity {
 
                 Log.d(TAG, "Call Successed!");
                 List<JsonElement> responseBody = response.body();
+                System.out.println("response body length: ");
+                System.out.println(responseBody.size());
                 for (JsonElement ele : responseBody) {
                     //todo
+                    JsonObject wordObject = ele.getAsJsonObject();
+                    String word = wordObject.get("phonetic").getAsString();
+//                    JsonElement meanings = wordObject.get("meanings").get("partOfSpeech");
+
+                    System.out.println("phonetic: " + word);
+//                    System.out.println("meanings:" +meanings.getAsString());
+
                 }
                 responseData = responseBody.toString();
                 System.out.println(TAG);
