@@ -5,11 +5,13 @@ import java.util.List;
 public class Word {
     String word;
     String phonetic;
-    List<String> definitions;
+    String partOfSpeech;
+    List<Definition> definitions;
 
-    public Word(String word, String phonetic, List<String> definitions) {
+    public Word(String word, String phonetic, String partOfSpeech, List<Definition> definitions) {
         this.word = word;
         this.phonetic = phonetic;
+        this.partOfSpeech = partOfSpeech;
         this.definitions = definitions;
     }
 
@@ -21,7 +23,11 @@ public class Word {
         return phonetic;
     }
 
-    public List<String> getDefinitions() {
+    public String getPartOfSpeech() {
+        return partOfSpeech;
+    }
+
+    public List<Definition> getDefinitions() {
         return definitions;
     }
 }
