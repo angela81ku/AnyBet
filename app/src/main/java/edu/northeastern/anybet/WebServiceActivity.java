@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,8 +16,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import edu.northeastern.anybet.models.IDictionaryAPI;
@@ -52,15 +51,12 @@ public class WebServiceActivity extends AppCompatActivity {
         wordAdapter = new WordAdapter(displayWordList, this);
         wordRecyclerView.setAdapter(wordAdapter);
 
-
     }
     public void clickSearch(android.view.View view){
         wordRecyclerView.getRecycledViewPool().clear();
         wordAdapter.notifyDataSetChanged();
         displayWordList.removeAll(displayWordList);
         searchWord(searchInput.getText().toString());
-
-
 
     }
 
@@ -82,27 +78,28 @@ public class WebServiceActivity extends AppCompatActivity {
                 loadingPB.setVisibility(View.GONE);
 
                 if(!response.isSuccessful()){
+
                     Log.d(TAG, "Cannot find this word" + response.code());
                     return;
                 }
 
-                Log.d(TAG, "Call Successed!");
+                Log.d(TAG, "Call Success!");
                 List<JsonElement> responseBody = response.body();
-//                System.out.println("response body length: ");
-//                System.out.println(responseBody.size());
                 for (JsonElement ele : responseBody) {
                     JsonObject wordObject = ele.getAsJsonObject();
-//                    System.out.println("111111");
-                    String phonetic = wordObject.get("phonetic").getAsString();
+                    JsonElement phoneticElement = wordObject.get("phonetic");
+                    if (phoneticElement == null) {
+                        Toast.makeText(getApplicationContext(),"The API doesn't support this word",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    String phonetic = phoneticElement.getAsString();
+
                     JsonArray meanings = wordObject.getAsJsonArray("meanings");
-//                    String mean = meanings.get("partOfSpeech").getAsString();
 
                     for (JsonElement jsonElement: meanings) {
                         JsonObject jo = jsonElement.getAsJsonObject();
                         String partOfSpeech = jo.get("partOfSpeech").getAsString();
-//                        System.out.println(partOfSpeech);
                         JsonArray definitions = jo.getAsJsonArray("definitions");
-//                        List<Definition> wordDefinitionList = new ArrayList<>();
                         StringBuilder defs = new StringBuilder();
                         for (JsonElement defElement : definitions) {
                             JsonObject defObject = defElement.getAsJsonObject();
@@ -110,31 +107,16 @@ public class WebServiceActivity extends AppCompatActivity {
                             defs.append('▶');
                             defs.append(definition);
                             defs.append("\n\n");
-//                            Definition newDef = new Definition(definition);
-//                            wordDefinitionList.add(newDef);
-//                            System.out.println(definition);
+
                         }
-//                        defs.append("--------------------------------------------------------------------------------------------------------");
                         Word newWord = new Word(curWord, phonetic, partOfSpeech, defs.toString());
 
                         displayWordList.add(newWord);
                         wordAdapter.notifyItemChanged(wordAdapter.getItemCount() - 1);
                     }
-//                    System.out.println("displayList:"+ displayWordList.size());
-
-//                    System.out.println("phonetic: " + word);
-//                    System.out.println("meanings:" + mean);
 
                 }
-//                wordRecyclerView.setAdapter(wordAdapter);
-
                 responseData = responseBody.toString();
-                System.out.println(TAG);
-                System.out.println(responseData);
-//                Intent intent = new Intent(WebServiceActivity.this, DictionaryActivity.class);
-//                intent.putExtra("responseData", responseData);
-//                startActivity(intent);
-
             }
 
             @Override
