@@ -15,6 +15,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import edu.northeastern.anybet.models.IDictionaryAPI;
@@ -36,6 +38,7 @@ public class WebServiceActivity extends AppCompatActivity {
     private String responseData;
     List<Word> displayWordList = new ArrayList<>();
     RecyclerView wordRecyclerView;
+    private WordAdapter wordAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +48,17 @@ public class WebServiceActivity extends AppCompatActivity {
         searchInput = findViewById(R.id.searchInput);
         loadingPB = findViewById(R.id.loadingPB);
         wordRecyclerView = findViewById(R.id.allWordsRecyclerView);
+        wordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        wordAdapter = new WordAdapter(displayWordList, this);
+        wordRecyclerView.setAdapter(wordAdapter);
 
 
     }
     public void clickSearch(android.view.View view){
-        displayWordList = new ArrayList<>();
+        displayWordList.removeAll(displayWordList);
         searchWord(searchInput.getText().toString());
-        wordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        wordRecyclerView.setAdapter(new WordAdapter(displayWordList, this));
+
+
 
     }
 
@@ -105,7 +111,7 @@ public class WebServiceActivity extends AppCompatActivity {
                         Word newWord = new Word(curWord, phonetic, partOfSpeech, wordDefinitionList);
 
                         displayWordList.add(newWord);
-
+                        wordAdapter.notifyItemChanged(wordAdapter.getItemCount() - 1);
                     }
 //                    System.out.println("displayList:"+ displayWordList.size());
 
@@ -113,12 +119,15 @@ public class WebServiceActivity extends AppCompatActivity {
 //                    System.out.println("meanings:" + mean);
 
                 }
+//                wordRecyclerView.setAdapter(wordAdapter);
+
                 responseData = responseBody.toString();
                 System.out.println(TAG);
                 System.out.println(responseData);
 //                Intent intent = new Intent(WebServiceActivity.this, DictionaryActivity.class);
 //                intent.putExtra("responseData", responseData);
 //                startActivity(intent);
+
             }
 
             @Override

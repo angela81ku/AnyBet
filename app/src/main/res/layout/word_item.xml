@@ -41,10 +41,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/wordDefinitionsRecyclerView"
-        android:layout_width="426dp"
-        android:layout_height="671dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@+id/wordSpellText"
-        tools:layout_editor_absoluteX="1dp" />
+        android:id="@+id/definitionRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="53dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
