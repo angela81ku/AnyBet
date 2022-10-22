@@ -7,11 +7,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.northeastern.anybet.models.IDictionaryAPI;
@@ -31,7 +34,8 @@ public class WebServiceActivity extends AppCompatActivity {
     private ProgressBar loadingPB;
 
     private String responseData;
-
+    List<Word> displayWordList = new ArrayList<>();
+    RecyclerView wordRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +44,21 @@ public class WebServiceActivity extends AppCompatActivity {
 
         searchInput = findViewById(R.id.searchInput);
         loadingPB = findViewById(R.id.loadingPB);
+        wordRecyclerView = findViewById(R.id.allWordsRecyclerView);
+
+
     }
     public void clickSearch(android.view.View view){
+        displayWordList = new ArrayList<>();
         searchWord(searchInput.getText().toString());
+        wordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        wordRecyclerView.setAdapter(new WordAdapter(displayWordList, this));
+
     }
 
     private void searchWord(String word) {
         loadingPB.setVisibility(View.VISIBLE);
-
+        String curWord = word;
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.dictionaryapi.dev/api/v2/entries/en/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -69,28 +80,36 @@ public class WebServiceActivity extends AppCompatActivity {
 
                 Log.d(TAG, "Call Successed!");
                 List<JsonElement> responseBody = response.body();
-                System.out.println("response body length: ");
-                System.out.println(responseBody.size());
+//                System.out.println("response body length: ");
+//                System.out.println(responseBody.size());
                 for (JsonElement ele : responseBody) {
                     JsonObject wordObject = ele.getAsJsonObject();
-                    String word = wordObject.get("phonetic").getAsString();
+//                    System.out.println("111111");
+                    String phonetic = wordObject.get("phonetic").getAsString();
                     JsonArray meanings = wordObject.getAsJsonArray("meanings");
 //                    String mean = meanings.get("partOfSpeech").getAsString();
 
                     for (JsonElement jsonElement: meanings) {
                         JsonObject jo = jsonElement.getAsJsonObject();
                         String partOfSpeech = jo.get("partOfSpeech").getAsString();
-                        System.out.println(partOfSpeech);
+//                        System.out.println(partOfSpeech);
                         JsonArray definitions = jo.getAsJsonArray("definitions");
+                        List<Definition> wordDefinitionList = new ArrayList<>();
                         for (JsonElement defElement : definitions) {
                             JsonObject defObject = defElement.getAsJsonObject();
                             String definition = defObject.get("definition").getAsString();
-                            System.out.println(definition);
+                            Definition newDef = new Definition(definition);
+                            wordDefinitionList.add(newDef);
+//                            System.out.println(definition);
                         }
+                        Word newWord = new Word(curWord, phonetic, partOfSpeech, wordDefinitionList);
+
+                        displayWordList.add(newWord);
 
                     }
+//                    System.out.println("displayList:"+ displayWordList.size());
 
-                    System.out.println("phonetic: " + word);
+//                    System.out.println("phonetic: " + word);
 //                    System.out.println("meanings:" + mean);
 
                 }

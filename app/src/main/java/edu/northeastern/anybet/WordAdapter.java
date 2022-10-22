@@ -43,9 +43,11 @@ public class WordAdapter extends RecyclerView.Adapter<WordViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull WordViewHolder holder, int position) {
         // sets the name of the person to the name textview of the viewholder.
-//        holder.name.setText(people.get(position).getName());
+        holder.wordTxt.setText(words.get(position).getWord());
         // sets the age of the person to the age textview of the viewholder.
-//        holder.age.setText(String.valueOf(people.get(position).getAge()));
+        holder.phoneticTxt.setText(words.get(position).getPhonetic());
+
+        holder.partOfSpeechTxt.setText(words.get(position).getPartOfSpeech());
 
         // set a click event on the whole itemView (every element of the recyclerview).
 //        holder.itemView.setOnClickListener(view -> {

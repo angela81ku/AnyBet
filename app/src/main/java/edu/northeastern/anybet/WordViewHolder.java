@@ -14,12 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class WordViewHolder extends RecyclerView.ViewHolder {
 
-//    public TextView name;
-//    public TextView age;
+    public TextView wordTxt;
+    public TextView phoneticTxt;
+    public TextView partOfSpeechTxt;
 
     public WordViewHolder(@NonNull View itemView) {
         super(itemView);
 //        this.name = itemView.findViewById(R.id.name);
 //        this.age = itemView.findViewById(R.id.age);
+        this.wordTxt = itemView.findViewById(R.id.wordSpellText);
+        this.phoneticTxt = itemView.findViewById(R.id.wordPhoneticText);
+        this.partOfSpeechTxt = itemView.findViewById(R.id.wordPartOfSpeechText);
+
     }
 }
