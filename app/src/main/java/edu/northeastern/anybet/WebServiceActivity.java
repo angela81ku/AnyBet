@@ -55,6 +55,8 @@ public class WebServiceActivity extends AppCompatActivity {
 
     }
     public void clickSearch(android.view.View view){
+        wordRecyclerView.getRecycledViewPool().clear();
+        wordAdapter.notifyDataSetChanged();
         displayWordList.removeAll(displayWordList);
         searchWord(searchInput.getText().toString());
 
@@ -100,7 +102,7 @@ public class WebServiceActivity extends AppCompatActivity {
                         String partOfSpeech = jo.get("partOfSpeech").getAsString();
 //                        System.out.println(partOfSpeech);
                         JsonArray definitions = jo.getAsJsonArray("definitions");
-                        List<Definition> wordDefinitionList = new ArrayList<>();
+//                        List<Definition> wordDefinitionList = new ArrayList<>();
                         StringBuilder defs = new StringBuilder();
                         for (JsonElement defElement : definitions) {
                             JsonObject defObject = defElement.getAsJsonObject();
@@ -108,8 +110,8 @@ public class WebServiceActivity extends AppCompatActivity {
                             defs.append('▶');
                             defs.append(definition);
                             defs.append("\n\n");
-                            Definition newDef = new Definition(definition);
-                            wordDefinitionList.add(newDef);
+//                            Definition newDef = new Definition(definition);
+//                            wordDefinitionList.add(newDef);
 //                            System.out.println(definition);
                         }
 //                        defs.append("--------------------------------------------------------------------------------------------------------");
