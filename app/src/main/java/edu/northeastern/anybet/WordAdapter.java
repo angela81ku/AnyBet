@@ -48,7 +48,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordViewHolder> {
         holder.phoneticTxt.setText(words.get(position).getPhonetic());
 
         holder.partOfSpeechTxt.setText(words.get(position).getPartOfSpeech());
-
+        holder.defineTxt.setText(words.get(position).getDefinitions());
         // set a click event on the whole itemView (every element of the recyclerview).
 //        holder.itemView.setOnClickListener(view -> {
 //            Toast.makeText(context, people.get(position).getName(), Toast.LENGTH_SHORT).show();

@@ -17,6 +17,7 @@ public class WordViewHolder extends RecyclerView.ViewHolder {
     public TextView wordTxt;
     public TextView phoneticTxt;
     public TextView partOfSpeechTxt;
+    public TextView defineTxt;
 
     public WordViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -25,6 +26,7 @@ public class WordViewHolder extends RecyclerView.ViewHolder {
         this.wordTxt = itemView.findViewById(R.id.wordSpellText);
         this.phoneticTxt = itemView.findViewById(R.id.wordPhoneticText);
         this.partOfSpeechTxt = itemView.findViewById(R.id.wordPartOfSpeechText);
+        this.defineTxt = itemView.findViewById(R.id.defineText);
 
     }
 }

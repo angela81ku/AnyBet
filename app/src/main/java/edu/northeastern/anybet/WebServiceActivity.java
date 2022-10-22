@@ -101,14 +101,19 @@ public class WebServiceActivity extends AppCompatActivity {
 //                        System.out.println(partOfSpeech);
                         JsonArray definitions = jo.getAsJsonArray("definitions");
                         List<Definition> wordDefinitionList = new ArrayList<>();
+                        StringBuilder defs = new StringBuilder();
                         for (JsonElement defElement : definitions) {
                             JsonObject defObject = defElement.getAsJsonObject();
                             String definition = defObject.get("definition").getAsString();
+                            defs.append('▶');
+                            defs.append(definition);
+                            defs.append("\n\n");
                             Definition newDef = new Definition(definition);
                             wordDefinitionList.add(newDef);
 //                            System.out.println(definition);
                         }
-                        Word newWord = new Word(curWord, phonetic, partOfSpeech, wordDefinitionList);
+//                        defs.append("--------------------------------------------------------------------------------------------------------");
+                        Word newWord = new Word(curWord, phonetic, partOfSpeech, defs.toString());
 
                         displayWordList.add(newWord);
                         wordAdapter.notifyItemChanged(wordAdapter.getItemCount() - 1);

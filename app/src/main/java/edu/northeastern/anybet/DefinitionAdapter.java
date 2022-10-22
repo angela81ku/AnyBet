@@ -42,7 +42,7 @@ public class DefinitionAdapter extends RecyclerView.Adapter<DefinitionViewHolder
     @Override
     public void onBindViewHolder(@NonNull DefinitionViewHolder holder, int position) {
         // sets the name of the person to the name textview of the viewholder.
-//        holder.name.setText(people.get(position).getName());
+        holder.definitionTxt.setText(definitions.get(position).getDefinition());
         // sets the age of the person to the age textview of the viewholder.
 //        holder.age.setText(String.valueOf(people.get(position).getAge()));
 

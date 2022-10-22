@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class DefinitionViewHolder extends RecyclerView.ViewHolder {
 
-//    public TextView name;
-//    public TextView age;
+
+    public TextView definitionTxt;
 
     public DefinitionViewHolder(@NonNull View itemView) {
         super(itemView);
-//        this.name = itemView.findViewById(R.id.name);
+        this.definitionTxt = itemView.findViewById(R.id.definitionText);
 //        this.age = itemView.findViewById(R.id.age);
     }
 }

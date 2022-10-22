@@ -6,9 +6,9 @@ public class Word {
     String word;
     String phonetic;
     String partOfSpeech;
-    List<Definition> definitions;
+    String definitions;
 
-    public Word(String word, String phonetic, String partOfSpeech, List<Definition> definitions) {
+    public Word(String word, String phonetic, String partOfSpeech, String definitions) {
         this.word = word;
         this.phonetic = phonetic;
         this.partOfSpeech = partOfSpeech;
@@ -27,7 +27,7 @@ public class Word {
         return partOfSpeech;
     }
 
-    public List<Definition> getDefinitions() {
+    public String getDefinitions() {
         return definitions;
     }
 }
