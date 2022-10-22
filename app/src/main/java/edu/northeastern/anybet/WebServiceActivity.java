@@ -1,6 +1,5 @@
 package edu.northeastern.anybet;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -72,21 +72,34 @@ public class WebServiceActivity extends AppCompatActivity {
                 System.out.println("response body length: ");
                 System.out.println(responseBody.size());
                 for (JsonElement ele : responseBody) {
-                    //todo
                     JsonObject wordObject = ele.getAsJsonObject();
                     String word = wordObject.get("phonetic").getAsString();
-//                    JsonElement meanings = wordObject.get("meanings").get("partOfSpeech");
+                    JsonArray meanings = wordObject.getAsJsonArray("meanings");
+//                    String mean = meanings.get("partOfSpeech").getAsString();
+
+                    for (JsonElement jsonElement: meanings) {
+                        JsonObject jo = jsonElement.getAsJsonObject();
+                        String partOfSpeech = jo.get("partOfSpeech").getAsString();
+                        System.out.println(partOfSpeech);
+                        JsonArray definitions = jo.getAsJsonArray("definitions");
+                        for (JsonElement defElement : definitions) {
+                            JsonObject defObject = defElement.getAsJsonObject();
+                            String definition = defObject.get("definition").getAsString();
+                            System.out.println(definition);
+                        }
+
+                    }
 
                     System.out.println("phonetic: " + word);
-//                    System.out.println("meanings:" +meanings.getAsString());
+//                    System.out.println("meanings:" + mean);
 
                 }
                 responseData = responseBody.toString();
                 System.out.println(TAG);
                 System.out.println(responseData);
-                Intent intent = new Intent(WebServiceActivity.this, DictionaryActivity.class);
-                intent.putExtra("responseData", responseData);
-                startActivity(intent);
+//                Intent intent = new Intent(WebServiceActivity.this, DictionaryActivity.class);
+//                intent.putExtra("responseData", responseData);
+//                startActivity(intent);
             }
 
             @Override

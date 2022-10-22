@@ -1,6 +1,7 @@
 package edu.northeastern.anybet;
 
-public class Definition {
+public class
+Definition {
     private String definition;
 
     public Definition(String definition){
