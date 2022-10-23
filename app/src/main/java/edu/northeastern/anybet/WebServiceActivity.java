@@ -80,6 +80,7 @@ public class WebServiceActivity extends AppCompatActivity {
                 if(!response.isSuccessful()){
 
                     Log.d(TAG, "Cannot find this word" + response.code());
+                    Toast.makeText(getApplicationContext(),"The API doesn't support this word",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -89,10 +90,24 @@ public class WebServiceActivity extends AppCompatActivity {
                     JsonObject wordObject = ele.getAsJsonObject();
                     JsonElement phoneticElement = wordObject.get("phonetic");
                     if (phoneticElement == null) {
-                        Toast.makeText(getApplicationContext(),"The API doesn't support this word",Toast.LENGTH_SHORT).show();
-                        return;
+                        JsonArray phoneticsElement = wordObject.getAsJsonArray("phonetics");
+                        for (JsonElement jsonElement: phoneticsElement) {
+                             JsonObject phonetics =  jsonElement.getAsJsonObject();
+                             phoneticElement = phonetics.get("text");
+                             Log.d(TAG, "phoneticElement try"+ phoneticElement);
+                             if(phoneticElement != null){
+                                break;
+                            }
+                        }
+
+                        if(phoneticElement == null){
+                            Toast.makeText(getApplicationContext(),"The API doesn't support this word",Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     }
+
                     String phonetic = phoneticElement.getAsString();
+                    Log.d(TAG, "phonetic after retrieve string"+ phonetic);
 
                     JsonArray meanings = wordObject.getAsJsonArray("meanings");
 
