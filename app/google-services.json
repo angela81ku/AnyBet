@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "70815051291",
+    "project_id": "anybet-d94a9",
+    "storage_bucket": "anybet-d94a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70815051291:android:384b441115a05f4ca112be",
+        "android_client_info": {
+          "package_name": "edu.northeastern.anybet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70815051291-sgj15jjfu7e4r5nb7dgram9ma28dgi5d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8RQ4lyH_pZPu4KCOWwUrnLJPyfHsvzpI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70815051291-sgj15jjfu7e4r5nb7dgram9ma28dgi5d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
