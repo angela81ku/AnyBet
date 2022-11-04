@@ -36,6 +36,7 @@
         android:layout_width="132dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:onClick="clickDatabase"
         android:text="@string/database"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
