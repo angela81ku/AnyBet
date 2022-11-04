@@ -19,8 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
 
     FirebaseDAO dao;
-
-    private FirebaseDatabase db;
+    FirebaseDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
