@@ -1,4 +1,4 @@
-package edu.northeastern.anybet;
+package edu.northeastern.anybet.webservice;
 
 import java.util.List;
 

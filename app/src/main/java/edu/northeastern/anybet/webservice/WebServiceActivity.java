@@ -1,4 +1,4 @@
-package edu.northeastern.anybet;
+package edu.northeastern.anybet.webservice;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.northeastern.anybet.R;
 import edu.northeastern.anybet.models.IDictionaryAPI;
 import retrofit2.Call;
 import retrofit2.Callback;

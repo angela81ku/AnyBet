@@ -1,10 +1,12 @@
-package edu.northeastern.anybet;
+package edu.northeastern.anybet.webservice;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import edu.northeastern.anybet.R;
 
 /**
  * An implementation of the recyclerview viewholder that is created specifically with respect to the

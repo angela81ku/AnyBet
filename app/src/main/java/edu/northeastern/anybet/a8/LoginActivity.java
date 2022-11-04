@@ -1,10 +1,12 @@
-package edu.northeastern.anybet;
+package edu.northeastern.anybet.a8;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+
+import edu.northeastern.anybet.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -14,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_a8_login);
 
         editTextUsername = findViewById(R.id.edit_text_username);
         btnLogin = findViewById(R.id.btn_login);

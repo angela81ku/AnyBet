@@ -1,14 +1,15 @@
-package edu.northeastern.anybet;
+package edu.northeastern.anybet.webservice;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import edu.northeastern.anybet.R;
 
 
 /**
