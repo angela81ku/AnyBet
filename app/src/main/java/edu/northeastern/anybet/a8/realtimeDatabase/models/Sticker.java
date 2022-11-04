@@ -1,4 +1,4 @@
-package edu.northeastern.anybet.realtimeDatabase.models;
+package edu.northeastern.anybet.a8.realtimeDatabase.models;
 
 public class Sticker {
     private String stickerId;
