@@ -1,6 +1,5 @@
 package edu.northeastern.anybet.a8;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,10 +7,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
@@ -29,6 +26,7 @@ public class A8UsersActivity extends AppCompatActivity {
     EditText a8UserReceiveUsernameInput;
 
     String curUser;
+
     FirebaseDAO dao;
     FirebaseDatabase db;
 
@@ -52,30 +50,45 @@ public class A8UsersActivity extends AppCompatActivity {
 
         // send message button
         a8UserSendButton.setOnClickListener(view -> {
-            //todo update stickerId
             String recipient = a8UserReceiveUsernameInput.getText().toString();
-            String stickerId = "sticker1";
-            Message message = new Message(curUser, recipient, stickerId);
-            dao.addMessage(message);
 
-            // update sticker count
-            db.getReference("users").child(curUser).get()
+            // check if recipient exist
+            db.getReference("users").child(recipient).get()
                     .addOnCompleteListener(task -> {
-                        StickerUser user = task.getResult().getValue(StickerUser.class);
-                        if (user != null) {
-                            Map<String, Integer> stickerCount = user.getStickerCount();
-                            if (stickerCount != null) {
-                                stickerCount.put(stickerId, stickerCount.getOrDefault(stickerId, 0) + 1);
-                            } else {
-                                stickerCount = new HashMap<>();
-                                stickerCount.put(stickerId, 1);
-                            }
-                            System.out.println(stickerCount);
-                            Map<String, Object> update = new HashMap<>();
-                            update.put("/" + curUser + "/stickerCount", stickerCount);
-                            db.getReference("users").updateChildren(update);
+                        if (task.getResult().getValue(StickerUser.class) == null) {
+                            // if not a valid recipient, show warning
+                            Toast.makeText(A8UsersActivity.this, "Sorry, unknown recipient.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // send new message
+                            //todo update stickerId
+                            String stickerId = "sticker2";
+                            Message message = new Message(curUser, recipient, stickerId);
+                            dao.addMessage(message);
+
+                            // update sticker count
+                            updateStickerCount(stickerId);
                         }
                     });
         });
+    }
+
+    private void updateStickerCount(String stickerId) {
+        db.getReference("users").child(curUser).get()
+                .addOnCompleteListener(updateTask -> {
+                    StickerUser user = updateTask.getResult().getValue(StickerUser.class);
+                    if (user != null) {
+                        Map<String, Integer> stickerCount = user.getStickerCount();
+                        if (stickerCount != null) {
+                            stickerCount.put(stickerId, stickerCount.getOrDefault(stickerId, 0) + 1);
+                        } else {
+                            stickerCount = new HashMap<>();
+                            stickerCount.put(stickerId, 1);
+                        }
+                        System.out.println(stickerCount);
+                        Map<String, Object> update = new HashMap<>();
+                        update.put("/" + curUser + "/stickerCount", stickerCount);
+                        db.getReference("users").updateChildren(update);
+                    }
+                });
     }
 }
