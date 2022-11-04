@@ -1,5 +1,8 @@
 package edu.northeastern.anybet.a8.realtimeDatabase.models;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Message {
     private String dateTime;
     private String sender;
@@ -10,11 +13,14 @@ public class Message {
 
     }
 
-    public Message(String dateTime, String sender, String recipient, String stickerId) {
-        this.dateTime = dateTime;
+    public Message(String sender, String recipient, String stickerId) {
         this.sender = sender;
         this.recipient = recipient;
         this.stickerId = stickerId;
+
+        LocalDateTime dateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.dateTime = dateTime.format(formatter);
     }
 
     public String getDateTime() {

@@ -2,6 +2,7 @@ package edu.northeastern.anybet.a8;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,11 @@ public class LoginActivity extends AppCompatActivity {
             //add user to database
             StickerUser user = new StickerUser(username);
             dao.addUser(user);
-            //todo go to send message activity
+
+            //go to send message activity
+            Intent intent = new Intent(this, A8UsersActivity.class);
+            intent.putExtra("username", username);
+            startActivity(intent);
         });
     }
 }
