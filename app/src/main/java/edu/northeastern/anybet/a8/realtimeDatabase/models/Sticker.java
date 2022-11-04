@@ -12,4 +12,14 @@ public class Sticker {
         this.stickerId = stickerId;
         this.stickerPath = stickerPath;
     }
+
+    public String getStickerId() {
+        return stickerId;
+    }
+
+    public String getStickerPath() {
+        return stickerPath;
+    }
+
+
 }
