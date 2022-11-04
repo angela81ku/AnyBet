@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AnyBet"
         tools:targetApi="31">
         <activity
+            android:name=".a8.A8UsersActivity"
+            android:exported="false" />
+        <activity
             android:name=".a8.LoginActivity"
             android:exported="false" />
         <activity
