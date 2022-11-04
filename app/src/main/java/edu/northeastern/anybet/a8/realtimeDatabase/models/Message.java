@@ -6,15 +6,30 @@ public class Message {
     private String recipient;
     private String stickerId;
 
-    private Message() {
+    public Message() {
 
     }
 
-    private Message(String dateTime, String sender, String recipient, String sticker) {
+    public Message(String dateTime, String sender, String recipient, String stickerId) {
         this.dateTime = dateTime;
         this.sender = sender;
         this.recipient = recipient;
         this.stickerId = stickerId;
     }
 
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public String getRecipient() {
+        return recipient;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public String getStickerId() {
+        return stickerId;
+    }
 }
