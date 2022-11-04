@@ -16,7 +16,7 @@ public class FirebaseDAO {
 
     public void addUser(StickerUser user) {
         if (user != null) {
-            databaseReference.child("users").push().setValue(user);
+            databaseReference.child("users").child(user.getUserName()).setValue(user);
         }
     }
 

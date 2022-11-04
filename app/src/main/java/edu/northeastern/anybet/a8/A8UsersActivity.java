@@ -2,20 +2,18 @@ package edu.northeastern.anybet.a8;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import edu.northeastern.anybet.R;
 
 public class A8UsersActivity extends AppCompatActivity {
 
-    EditText a8UserUsername;
+    TextView a8UserUsername;
 
     String curUser;
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
