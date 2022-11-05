@@ -4,27 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textAlignment="center"
     tools:context=".a8.A8UsersActivity">
 
-    <RadioButton
-        android:id="@+id/a8User_sticker2_radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="8dp"
-        android:text="sticker2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/a8User_sticker1_radioButton" />
-
-    <RadioButton
-        android:id="@+id/a8User_sticker3_radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="8dp"
-        android:text="sticker3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/a8User_sticker2_radioButton" />
 
     <Button
         android:id="@+id/a8User_stickers_Button"
@@ -75,20 +57,11 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Username"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/a8User_stickers_Button" />
 
-    <RadioButton
-        android:id="@+id/a8User_sticker1_radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="8dp"
-        android:text="sticker1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/a8User_send_button" />
 
     <Button
         android:id="@+id/a8User_send_button"
@@ -100,5 +73,71 @@
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a8User_send_button">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/a8User_sticker1_radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/stickers_selector"
+                android:onClick="onStickerSelect"
+                android:textAlignment="center"
+                android:button="@drawable/sticker1" />
+<!--            android:text="sticker1"-->
+            <!--            android:layout_marginStart="140dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/a8User_send_button" -->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/a8User_sticker1_radioButton" -->
+
+
+            <RadioButton
+                android:id="@+id/a8User_sticker2_radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="67dp"
+                android:onClick="onStickerSelect"
+                android:background="@drawable/stickers_selector"
+                android:button="@drawable/sticker2" />
+            <!--            android:layout_marginStart="140dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+
+
+            <RadioButton
+                android:id="@+id/a8User_sticker3_radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="67dp"
+                android:background="@drawable/stickers_selector"
+                android:onClick="onStickerSelect"
+                android:button="@drawable/sticker3" />
+
+            <!--            android:layout_marginStart="140dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/a8User_sticker2_radioButton" -->
+        </RadioGroup>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

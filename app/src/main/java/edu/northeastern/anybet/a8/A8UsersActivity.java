@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ public class A8UsersActivity extends AppCompatActivity {
     TextView a8UserUsername;
     Button a8UserSendButton;
     EditText a8UserReceiveUsernameInput;
+    String stickerId = "";
 
     String curUser;
 
@@ -61,7 +64,7 @@ public class A8UsersActivity extends AppCompatActivity {
                         } else {
                             // send new message
                             //todo update stickerId
-                            String stickerId = "sticker2";
+
                             Message message = new Message(curUser, recipient, stickerId);
                             dao.addMessage(message);
 
@@ -90,5 +93,23 @@ public class A8UsersActivity extends AppCompatActivity {
                         db.getReference("users").updateChildren(update);
                     }
                 });
+    }
+
+    public void onStickerSelect(View view){
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
+        switch (radioGroup.getCheckedRadioButtonId()){
+            case R.id.a8User_sticker1_radioButton:
+                Toast.makeText(this, "sticker1",Toast.LENGTH_SHORT).show();
+                stickerId = "sticker1";
+                break;
+            case R.id.a8User_sticker2_radioButton:
+                Toast.makeText(this, "sticker2",Toast.LENGTH_SHORT).show();
+                stickerId = "sticker2";
+                break;
+            case R.id.a8User_sticker3_radioButton:
+                Toast.makeText(this, "sticker3",Toast.LENGTH_SHORT).show();
+                stickerId = "sticker3";
+                break;
+        }
     }
 }
