@@ -22,7 +22,7 @@
             android:name=".a8.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".WebServiceActivity"
+            android:name=".webservice.WebServiceActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
