@@ -8,79 +8,93 @@
     tools:context=".a8.A8UsersActivity">
 
 
-    <Button
-        android:id="@+id/a8User_stickers_Button"
-        android:layout_width="112dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="64dp"
-        android:text="stickers"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/a8User_username" />
-
     <TextView
         android:id="@+id/a8User_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="32dp"
         android:text="Username"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.113" />
 
     <Button
         android:id="@+id/a8User_receiveHistory_Button"
         android:layout_width="113dp"
         android:layout_height="39dp"
-        android:layout_marginTop="24dp"
         android:text="History"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/a8User_stickers_Button"
-        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/a8User_username" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.228" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Receiver:"
-        app:layout_constraintEnd_toStartOf="@+id/a8User_receiveUsername_Input"
-        app:layout_constraintHorizontal_bias="0.732"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/a8User_receiveHistory_Button" />
-
-    <EditText
-        android:id="@+id/a8User_receiveUsername_Input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="textPersonName"
+    <Button
+        android:id="@+id/a8User_stickers_Button"
+        android:layout_width="112dp"
+        android:layout_height="39dp"
+        android:text="stickers"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/a8User_stickers_Button" />
-
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/a8User_receiveHistory_Button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.228" />
 
     <Button
         android:id="@+id/a8User_send_button"
         android:layout_width="103dp"
         android:layout_height="39dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
         android:text="send"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/a8User_receiveUsername_Input"
+        app:layout_constraintTop_toBottomOf="@+id/a8User_receiveHistory_Button"
+        app:layout_constraintVertical_bias="0.693" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="86dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="32dp"
+        android:text="Receiver:"
+        android:textAlignment="center"
+        android:textSize="20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/a8User_receiveUsername_Input"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/a8User_send_button">
+        app:layout_constraintTop_toBottomOf="@+id/a8User_receiveHistory_Button"
+        app:layout_constraintVertical_bias="0.693" />
+
+    <EditText
+        android:id="@+id/a8User_receiveUsername_Input"
+        android:layout_width="143dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/a8User_send_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/a8User_receiveHistory_Button"
+        app:layout_constraintVertical_bias="0.691" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/a8User_receiveUsername_Input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a8User_receiveHistory_Button">
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -98,10 +112,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/stickers_selector"
+                android:button="@drawable/sticker1"
                 android:onClick="onStickerSelect"
-                android:textAlignment="center"
-                android:button="@drawable/sticker1" />
-<!--            android:text="sticker1"-->
+                android:textAlignment="center" />
+            <!--            android:text="sticker1"-->
             <!--            android:layout_marginStart="140dp"-->
             <!--            android:layout_marginTop="8dp"-->
 
@@ -111,24 +125,25 @@
             <!--            app:layout_constraintTop_toBottomOf="@+id/a8User_sticker1_radioButton" -->
 
 
+            <!--            android:layout_marginStart="140dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+
+
             <RadioButton
                 android:id="@+id/a8User_sticker2_radioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="67dp"
-                android:onClick="onStickerSelect"
                 android:background="@drawable/stickers_selector"
-                android:button="@drawable/sticker2" />
-            <!--            android:layout_marginStart="140dp"-->
-            <!--            android:layout_marginTop="8dp"-->
-
+                android:button="@drawable/sticker2"
+                android:onClick="onStickerSelect" />
 
             <RadioButton
                 android:id="@+id/a8User_sticker3_radioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="67dp"
                 android:background="@drawable/stickers_selector"
-                android:onClick="onStickerSelect"
-                android:button="@drawable/sticker3" />
+                android:button="@drawable/sticker3"
+                android:onClick="onStickerSelect" />
 
             <!--            android:layout_marginStart="140dp"-->
             <!--            android:layout_marginTop="8dp"-->
@@ -139,5 +154,17 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose one sticker to send to your friend!"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a8User_username"
+        app:layout_constraintVertical_bias="0.867" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
