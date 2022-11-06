@@ -1,9 +1,17 @@
 package edu.northeastern.anybet.a8;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +19,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -87,7 +99,66 @@ public class A8UsersActivity extends AppCompatActivity {
                         }
                     });
         });
+
+        db.getReference("messages").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Message msg = snapshot.getValue(Message.class);
+
+                if (msg.getRecipient().equals(curUser)) {
+                    NotificationManager mNotificationManager =
+                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        NotificationChannel channel = new NotificationChannel("YOUR_CHANNEL_ID",
+                                "YOUR_CHANNEL_NAME",
+                                NotificationManager.IMPORTANCE_DEFAULT);
+                        channel.setDescription("YOUR_NOTIFICATION_CHANNEL_DESCRIPTION");
+                        mNotificationManager.createNotificationChannel(channel);
+                    }
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "YOUR_CHANNEL_ID")
+                            .setSmallIcon(getStickerPath(msg.getStickerId())) // notification icon
+                            .setContentTitle("New Sticker") // title for notification
+                            .setContentText("User: " + msg.getSender() + " sent you a new sticker!")// message for notification
+                            .setAutoCancel(true); // clear notification after click
+//                Intent intent = new Intent(getApplicationContext(), ACTIVITY_NAME.class);
+//                PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//                mBuilder.setContentIntent(pi);
+                    mNotificationManager.notify(0, mBuilder.build());
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
+
+    private int getStickerPath(String stickerId) {
+        if (stickerId.equals("sticker1")) {
+            return R.drawable.sticker1;
+        } else if (stickerId.equals("sticker2")) {
+            return R.drawable.sticker2;
+        } else return R.drawable.sticker3;
+    }
+
 
     private void updateStickerCount(String stickerId) {
         db.getReference("users").child(curUser).get()
