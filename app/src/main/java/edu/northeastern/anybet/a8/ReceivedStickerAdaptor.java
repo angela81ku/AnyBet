@@ -30,9 +30,16 @@ public class ReceivedStickerAdaptor extends RecyclerView.Adapter<ReceivedSticker
 
     @Override
     public void onBindViewHolder(@NonNull ReceivedStickerViewHolder holder, int position) {
-        holder.stickerId.setText(receivedStickers.get(position).getStickerId() + " | ");
         holder.sender.setText("sender:" + receivedStickers.get(position).getSendUser() + " | ");
         holder.time.setText(receivedStickers.get(position).getSendTime());
+        String id = receivedStickers.get(position).getStickerId();
+        if (id.equals("sticker1")) {
+            holder.img.setImageResource(R.drawable.sticker1);
+        } else if (id.equals("sticker2")) {
+            holder.img.setImageResource(R.drawable.sticker2);
+        } else {
+            holder.img.setImageResource(R.drawable.sticker3);
+        }
     }
 
     @Override

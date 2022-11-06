@@ -29,8 +29,17 @@ public class StickerAdaptor extends RecyclerView.Adapter<StickerViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull StickerViewHolder holder, int position) {
-        holder.stickerId.setText(stickers.get(position).getStickerId() + ":");
+//        holder.stickerId.setText(stickers.get(position).getStickerId() + ":");
         holder.stickerCount.setText(String.valueOf(stickers.get(position).getCount()));
+        String id = stickers.get(position).getStickerId();
+        if (id.equals("sticker1")) {
+            holder.img.setImageResource(R.drawable.sticker1);
+        } else if (id.equals("sticker2")) {
+            holder.img.setImageResource(R.drawable.sticker2);
+        } else {
+            holder.img.setImageResource(R.drawable.sticker3);
+        }
+
     }
 
     @Override
