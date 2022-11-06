@@ -36,7 +36,7 @@ public class StickerAdaptor extends RecyclerView.Adapter<StickerViewHolder>{
             holder.img.setImageResource(R.drawable.sticker1);
         } else if (id.equals("sticker2")) {
             holder.img.setImageResource(R.drawable.sticker2);
-        } else {
+        } else if(id.equals("sticker3")){
             holder.img.setImageResource(R.drawable.sticker3);
         }
 

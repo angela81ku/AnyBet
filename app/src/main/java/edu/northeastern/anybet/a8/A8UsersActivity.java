@@ -67,13 +67,23 @@ public class A8UsersActivity extends AppCompatActivity {
                             Toast.makeText(A8UsersActivity.this, "Sorry, unknown recipient.", Toast.LENGTH_SHORT).show();
                         } else {
                             // send new message
-                            //todo update stickerId
-
+                            if(stickerId.equals("")){
+                                Toast.makeText(this, "Please select a sticker before send",
+                                        Toast.LENGTH_SHORT).show();
+                            }else if(recipient.equals("") ){
+                                Toast.makeText(this, "Please type a receiver before send",
+                                        Toast.LENGTH_SHORT).show();
+                            }else if( recipient.equals(curUser)){
+                                Toast.makeText(this, "Please type another user other than yourself before send",
+                                        Toast.LENGTH_SHORT).show();
+                            }else{
                             Message message = new Message(curUser, recipient, stickerId);
                             dao.addMessage(message);
+                                Toast.makeText(this, "You sent a sticker to " + recipient+"! ",
+                                        Toast.LENGTH_SHORT).show();
 
                             // update sticker count
-                            updateStickerCount(stickerId);
+                            updateStickerCount(stickerId);}
                         }
                     });
         });
@@ -103,15 +113,15 @@ public class A8UsersActivity extends AppCompatActivity {
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
         switch (radioGroup.getCheckedRadioButtonId()){
             case R.id.a8User_sticker1_radioButton:
-                Toast.makeText(this, "flower is selected",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "flower is selected",Toast.LENGTH_SHORT).show();
                 stickerId = "sticker1";
                 break;
             case R.id.a8User_sticker2_radioButton:
-                Toast.makeText(this, "couch is selected",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "couch is selected",Toast.LENGTH_SHORT).show();
                 stickerId = "sticker2";
                 break;
             case R.id.a8User_sticker3_radioButton:
-                Toast.makeText(this, "star is selected",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "star is selected",Toast.LENGTH_SHORT).show();
                 stickerId = "sticker3";
                 break;
         }

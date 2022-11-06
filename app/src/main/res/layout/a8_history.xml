@@ -8,12 +8,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSent"
-        android:layout_width="411dp"
-        android:layout_height="620dp"
+        android:layout_width="327dp"
+        android:layout_height="497dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_constraintTop_toBottomOf="@id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -23,6 +24,5 @@
         app:layout_constraintBottom_toTopOf="@+id/rvSent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.505" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
