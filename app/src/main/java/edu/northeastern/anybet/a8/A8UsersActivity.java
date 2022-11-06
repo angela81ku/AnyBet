@@ -99,15 +99,15 @@ public class A8UsersActivity extends AppCompatActivity {
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
         switch (radioGroup.getCheckedRadioButtonId()){
             case R.id.a8User_sticker1_radioButton:
-                Toast.makeText(this, "sticker1",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "flower is selected",Toast.LENGTH_SHORT).show();
                 stickerId = "sticker1";
                 break;
             case R.id.a8User_sticker2_radioButton:
-                Toast.makeText(this, "sticker2",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "couch is selected",Toast.LENGTH_SHORT).show();
                 stickerId = "sticker2";
                 break;
             case R.id.a8User_sticker3_radioButton:
-                Toast.makeText(this, "sticker3",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "star is selected",Toast.LENGTH_SHORT).show();
                 stickerId = "sticker3";
                 break;
         }
