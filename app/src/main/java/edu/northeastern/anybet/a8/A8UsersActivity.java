@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +24,8 @@ public class A8UsersActivity extends AppCompatActivity {
 
     TextView a8UserUsername;
     Button a8UserSendButton;
+    Button a8HistoryButton;
+    Button a8StickersButton;
     EditText a8UserReceiveUsernameInput;
 
     String curUser;
@@ -38,6 +41,8 @@ public class A8UsersActivity extends AppCompatActivity {
         a8UserUsername = findViewById(R.id.a8User_username);
         a8UserSendButton = findViewById(R.id.a8User_send_button);
         a8UserReceiveUsernameInput = findViewById(R.id.a8User_receiveUsername_Input);
+        a8HistoryButton = findViewById(R.id.a8User_receiveHistory_Button);
+        a8StickersButton = findViewById(R.id.a8User_stickers_Button);
 
         dao = new FirebaseDAO();
         db = FirebaseDatabase.getInstance();
@@ -90,5 +95,21 @@ public class A8UsersActivity extends AppCompatActivity {
                         db.getReference("users").updateChildren(update);
                     }
                 });
+    }
+
+    public void clickHistory(View view){
+
+        Intent intent = new Intent(this, A8HistoryActivity.class);
+        intent.putExtra("username", curUser);
+        startActivity(intent);
+
+    }
+
+    public void clickStickers(View view){
+
+        Intent intent = new Intent(this, A8StickersActivity.class);
+        intent.putExtra("username", curUser);
+        startActivity(intent);
+
     }
 }
