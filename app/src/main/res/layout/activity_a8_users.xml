@@ -32,6 +32,7 @@
         android:layout_height="39dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="64dp"
+        android:onClick="clickStickers"
         android:text="stickers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/a8User_username" />
@@ -51,6 +52,7 @@
         android:layout_width="113dp"
         android:layout_height="39dp"
         android:layout_marginTop="24dp"
+        android:onClick="clickHistory"
         android:text="History"
         app:layout_constraintEnd_toStartOf="@+id/a8User_stickers_Button"
         app:layout_constraintHorizontal_bias="0.455"
