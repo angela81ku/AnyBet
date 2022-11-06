@@ -22,10 +22,10 @@
 
     <Button
         android:id="@+id/a8User_receiveHistory_Button"
-        android:layout_width="113dp"
-        android:layout_height="39dp"
+        android:layout_width="157dp"
+        android:layout_height="63dp"
         android:onClick="clickHistory"
-        android:text="History"
+        android:text="Sent Count"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/a8User_stickers_Button"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,10 +35,10 @@
 
     <Button
         android:id="@+id/a8User_stickers_Button"
-        android:layout_width="112dp"
-        android:layout_height="39dp"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
         android:onClick="clickStickers"
-        android:text="stickers"
+        android:text="Received History"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

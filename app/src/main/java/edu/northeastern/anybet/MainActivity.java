@@ -28,4 +28,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+    public void clickAbout(View view){
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
 }

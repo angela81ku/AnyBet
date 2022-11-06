@@ -21,13 +21,14 @@
         app:layout_constraintVertical_bias="0.072" />
 
     <Button
-        android:id="@+id/webServiceBtn"
+        android:id="@+id/webServiceBtn2"
         android:layout_width="132dp"
         android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:onClick="clickWebService"
-        android:text="@string/webservice"
+        android:layout_marginTop="32dp"
+        android:onClick="clickAbout"
+        android:text="About "
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupName" />
 
@@ -35,12 +36,25 @@
         android:id="@+id/dataBaseBtn"
         android:layout_width="132dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:onClick="clickDatabase"
         android:text="@string/database"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/webServiceBtn" />
+
+    <Button
+        android:id="@+id/webServiceBtn"
+        android:layout_width="132dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="100dp"
+        android:onClick="clickWebService"
+        android:text="@string/webservice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupName" />
 
     <Button
         android:id="@+id/anyBetBtn"
@@ -53,7 +67,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dataBaseBtn"
-        app:layout_constraintVertical_bias="0.004"
+        app:layout_constraintVertical_bias="0.016"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
