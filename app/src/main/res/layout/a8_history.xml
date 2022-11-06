@@ -8,12 +8,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSent"
-        android:layout_width="327dp"
-        android:layout_height="497dp"
+        android:layout_width="268dp"
+        android:layout_height="285dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.674"
         tools:layout_constraintTop_toBottomOf="@id/textView" />
 
     <TextView

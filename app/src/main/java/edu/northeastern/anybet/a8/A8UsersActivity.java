@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -115,7 +120,10 @@ public class A8UsersActivity extends AppCompatActivity {
                         channel.setDescription("YOUR_NOTIFICATION_CHANNEL_DESCRIPTION");
                         mNotificationManager.createNotificationChannel(channel);
                     }
+                    //LargeIcon need to be set before smallIcon, and need to transfer from png to bitmap
+                    Bitmap tempBMP = BitmapFactory.decodeResource(getResources(),R.mipmap.happy48);
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "YOUR_CHANNEL_ID")
+                            .setLargeIcon(tempBMP)
                             .setSmallIcon(getStickerPath(msg.getStickerId())) // notification icon
                             .setContentTitle("New Sticker") // title for notification
                             .setContentText("User: " + msg.getSender() + " sent you a new sticker!")// message for notification
