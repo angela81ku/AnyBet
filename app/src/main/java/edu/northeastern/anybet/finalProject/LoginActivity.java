@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btn_login);
 
         btnLogin.setOnClickListener(view -> {
-            String username = editTextUsername.getText().toString();
+//            String username = editTextUsername.getText().toString();
 
 //            db.getReference("users").child(username).get()
 //                    .addOnCompleteListener(task -> {
@@ -45,8 +45,8 @@ public class LoginActivity extends AppCompatActivity {
 //                    });
 //
 //            //go to send message activity
-            Intent intent = new Intent(this, A8UsersActivity.class);
-            intent.putExtra("username", username);
+            Intent intent = new Intent(this, HomePageActivity.class);
+//            intent.putExtra("username", username);
             startActivity(intent);
         });
     }

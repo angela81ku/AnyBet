@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void clickAnyBet(View view){
-        Intent intent = new Intent(this, HomePageActivity.class);
+        Intent intent = new Intent(this, edu.northeastern.anybet.finalProject.LoginActivity.class);
         startActivity(intent);
     }
 }
