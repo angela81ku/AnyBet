@@ -21,7 +21,7 @@
 
     <Button
         android:id="@+id/btn_addNewBet"
-        android:layout_width="256dp"
+        android:layout_width="193dp"
         android:layout_height="70dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="27dp"
@@ -36,16 +36,17 @@
 
     <Spinner
         android:id="@+id/spinnerBetStatus"
-        android:layout_width="109dp"
-        android:layout_height="65dp"
+        android:layout_width="176dp"
+        android:layout_height="67dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toEndOf="@+id/btn_addNewBet"
         app:layout_constraintTop_toBottomOf="@+id/a8User_username2"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.047" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewBetHomePage"
         android:layout_width="368dp"
         android:layout_height="490dp"
         android:layout_marginTop="28dp"
