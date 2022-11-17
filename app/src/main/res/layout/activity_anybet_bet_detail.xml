@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".finalProject.BetDetailActivity"
-    >
+    tools:context=".finalProject.BetDetailActivity">
 
 
     <ImageButton
@@ -36,6 +35,7 @@
         android:id="@+id/imageMoneyFrame"
         android:layout_width="142dp"
         android:layout_height="129dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toStartOf="@+id/imageGoldThumbright"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageGoldThumbleft"
@@ -99,28 +99,28 @@
         android:text="US100"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageMoneyFrame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageMoneyFrame"
+        app:layout_constraintStart_toStartOf="@+id/imageMoneyFrame"
         app:layout_constraintTop_toTopOf="@+id/imageMoneyFrame" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/txtViewParticipant"
         android:layout_width="167dp"
         android:layout_height="35dp"
+        android:layout_marginTop="23dp"
         android:text="UserXX"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.336"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.531" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewProgressStatus"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/txtViewProgressStatus"
         android:layout_width="167dp"
         android:layout_height="35dp"
-        android:layout_marginTop="60dp"
         android:text="In Progress"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -128,14 +128,14 @@
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toEndOf="@+id/imgProgress"
         app:layout_constraintTop_toBottomOf="@+id/imageMoneyFrame"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.085" />
 
     <ImageView
         android:id="@+id/imgParticipant"
         android:layout_width="43dp"
         android:layout_height="43dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView17"
+        app:layout_constraintEnd_toStartOf="@+id/txtViewParticipant"
         app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgProgress"
