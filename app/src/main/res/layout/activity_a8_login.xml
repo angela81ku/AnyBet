@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".a8.LoginActivity">
+    tools:context=".finalProject.LoginActivity">
 
     <Button
         android:id="@+id/btn_login"
@@ -22,8 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="username"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_login"
         app:layout_constraintStart_toStartOf="parent"

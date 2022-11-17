@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import edu.northeastern.anybet.a8.LoginActivity;
+import edu.northeastern.anybet.finalProject.HomePageActivity;
 import edu.northeastern.anybet.webservice.WebServiceActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickAbout(View view){
         Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
+    public void clickAnyBet(View view){
+        Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
     }
 }
