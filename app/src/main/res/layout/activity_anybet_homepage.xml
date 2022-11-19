@@ -7,7 +7,7 @@
     tools:context=".finalProject.">
 
     <TextView
-        android:id="@+id/a8User_username2"
+        android:id="@+id/anybet_user_username2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
@@ -31,7 +31,7 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/a8User_username2"
+        app:layout_constraintTop_toBottomOf="@+id/anybet_user_username2"
         app:layout_constraintVertical_bias="0.001" />
 
     <Spinner
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toEndOf="@+id/btn_addNewBet"
-        app:layout_constraintTop_toBottomOf="@+id/a8User_username2"
+        app:layout_constraintTop_toBottomOf="@+id/anybet_user_username2"
         app:layout_constraintVertical_bias="0.047" />
 
     <androidx.recyclerview.widget.RecyclerView
