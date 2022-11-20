@@ -14,13 +14,14 @@ public class Bet {
     private String betEndTime;
     private double longitude;
     private double latitude;
+    private String description;
 
     public Bet() {
 
     }
 
     public Bet(String title, String betPrice, String participant1, String participant2,
-               String betStartTime, double longitude, double latitude) {
+               String betStartTime, double longitude, double latitude, String description) {
         this.title = title;
         this.betPrice = betPrice;
         this.participant1 = participant1;
@@ -30,6 +31,7 @@ public class Bet {
         this.betEndTime = "";
         this.longitude = longitude;
         this.latitude = latitude;
+        this.description = description;
     }
 
     public String getTitle() {
@@ -74,6 +76,14 @@ public class Bet {
 
     public String getBetStartTime() {
         return betStartTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setBetStartTime(String betStartTime) {

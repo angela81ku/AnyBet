@@ -39,10 +39,11 @@ public class AddBetActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private String locationProvider = null;
     public String betStartTime;
-
+    public EditText betDescription;
     public String title;
     public String price;
     public String otherParticipant;
+    public String description;
     public FirebaseDAO dao;
     public FirebaseDatabase db;
 
@@ -86,6 +87,7 @@ public class AddBetActivity extends AppCompatActivity {
         betTitle = findViewById(R.id.betContentTxt);
         betPrice = findViewById(R.id.editTextTextInputNumberSigned);
         participant2 = findViewById(R.id.editTextUsername);
+        betDescription = findViewById(R.id.editTextBetDes);
 
 
 
@@ -95,6 +97,7 @@ public class AddBetActivity extends AppCompatActivity {
         title = betTitle.getText().toString();
         price = betPrice.getText().toString();
         otherParticipant = participant2.getText().toString();
+        description = betDescription.getText().toString();
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         betStartTime = dateTime.format(formatter);
@@ -125,7 +128,7 @@ public class AddBetActivity extends AppCompatActivity {
             locationManager.requestLocationUpdates(locationProvider, 0, 0, locationListener);
         }
 
-        if (!title.equals("") && !price.equals("") && !otherParticipant.equals("")) {
+        if (!title.equals("") && !price.equals("") && !otherParticipant.equals("") && !description.equals("")) {
             if (otherParticipant.equals(participant1)) {
                 Toast.makeText(this, "Please enter another user other than yourself before submitting a bet",
                         Toast.LENGTH_SHORT).show();
@@ -138,7 +141,7 @@ public class AddBetActivity extends AppCompatActivity {
                         if (task.getResult().getValue(BetUser.class) == null) {
                             Toast.makeText(this, "The user is unknown.", Toast.LENGTH_SHORT).show();
                         }else {
-                            Bet bet = new Bet(title, price, participant1, otherParticipant,betStartTime, longitude, latitude);
+                            Bet bet = new Bet(title, price, participant1, otherParticipant,betStartTime, longitude, latitude,description);
                             dao.addBet(bet);
                             Toast.makeText(this, "The bet is created.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(this, BetDetailActivity.class);
@@ -155,6 +158,9 @@ public class AddBetActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }else if(price.equals("")){
                 Toast.makeText(this, "Please enter bet amount before submitting a bet",
+                        Toast.LENGTH_SHORT).show();
+            }else if(description.equals("")){
+                Toast.makeText(this, "Please enter bet description before submitting a bet",
                         Toast.LENGTH_SHORT).show();
             }else if(otherParticipant.equals(participant1)){
                 Toast.makeText(this, "Please enter another user other than yourself before submitting a bet",
