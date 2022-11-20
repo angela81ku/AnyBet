@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,6 +20,10 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     private View btnAddNewBet;
     private Spinner spinnerBetStatus;
 
+    TextView anybetUserUsername;
+
+    String curUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +32,14 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
         btnAddNewBet = findViewById(R.id.btn_addNewBet);
         spinnerBetStatus = findViewById(R.id.spinnerBetStatus);
+        anybetUserUsername = findViewById(R.id.anybet_user_username2);
+
+        Intent loginIntent = getIntent();
+        if (loginIntent != null) {
+            curUser = loginIntent.getStringExtra("username");
+            anybetUserUsername.setText("Hello, " + curUser);
+        }
+
         String[] betStatus = getResources().getStringArray(R.array.betStatus);
         ArrayAdapter adapter = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item,
