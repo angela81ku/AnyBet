@@ -42,6 +42,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/betContentTxt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="What are you betting today?" />
@@ -51,7 +52,6 @@
         android:id="@+id/imageMoneyFrame"
         android:layout_width="142dp"
         android:layout_height="129dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerFriendChooser"
         app:layout_constraintEnd_toStartOf="@+id/imageGoldThumbright"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageGoldThumbleft"
@@ -95,16 +95,6 @@
         app:layout_constraintStart_toStartOf="@+id/imageMoneyFrame"
         app:layout_constraintTop_toTopOf="@+id/imageMoneyFrame" />
 
-    <Spinner
-        android:id="@+id/spinnerFriendChooser"
-        android:layout_width="257dp"
-        android:layout_height="41dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.431" />
-
     <ImageView
         android:id="@+id/imgParticipant"
         android:layout_width="43dp"
@@ -112,8 +102,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerFriendChooser"
-        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageGoldThumbleft"
         app:layout_constraintVertical_bias="0.0"
@@ -145,5 +133,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgStartTime"
         app:layout_constraintVertical_bias="0.097" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="346dp"/>
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="username"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.431" />
+
+    <EditText
+        android:id="@+id/editTextBetDes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="description"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.517" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

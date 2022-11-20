@@ -88,7 +88,7 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         btnAddNewBet.setOnClickListener(view -> {
 
             Intent intent = new Intent(this, AddBetActivity.class);
-
+            intent.putExtra("username", curUser);
             startActivity(intent);
         });
         BetClickListener betClickListener = new BetClickListener() {
