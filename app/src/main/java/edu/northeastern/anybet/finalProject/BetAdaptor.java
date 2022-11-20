@@ -2,6 +2,7 @@ package edu.northeastern.anybet.finalProject;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import edu.northeastern.anybet.finalProject.realtimeDatabase.models.Bet;
 public class BetAdaptor extends RecyclerView.Adapter<BetViewHolder> {
     private final List<Bet> bets;
     private final Context context;
+    private BetClickListener listener;
 
     public BetAdaptor(List<Bet> bets, Context context) {
         this.bets = bets;
@@ -25,7 +27,8 @@ public class BetAdaptor extends RecyclerView.Adapter<BetViewHolder> {
     @NonNull
     @Override
     public BetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new BetViewHolder(LayoutInflater.from(context).inflate(R.layout.single_bet_item_homepage, null));
+        View view = LayoutInflater.from(context).inflate(R.layout.single_bet_item_homepage, null);// todo: a little different from LinkAdaptor
+        return new BetViewHolder(view, listener);
     }
 
     @Override
@@ -40,5 +43,9 @@ public class BetAdaptor extends RecyclerView.Adapter<BetViewHolder> {
     @Override
     public int getItemCount() {
         return bets.size();
+    }
+
+    public void setOnItemClickListener(BetClickListener betClickListener) {
+        this.listener = betClickListener;
     }
 }

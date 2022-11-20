@@ -1,4 +1,6 @@
 package edu.northeastern.anybet.finalProject;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,12 +15,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.northeastern.anybet.R;
+import edu.northeastern.anybet.a8.realtimeDatabase.models.Message;
+import edu.northeastern.anybet.a8.realtimeDatabase.models.ReceivedSticker;
 import edu.northeastern.anybet.finalProject.realtimeDatabase.models.Bet;
 
 
@@ -64,11 +72,76 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
                 betStatus);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerBetStatus.setAdapter(adapter);
+        spinnerBetStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String status = adapterView.getItemAtPosition(i).toString();
+                // todo: update recycler view base on the status
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         btnAddNewBet.setOnClickListener(view -> {
 
             Intent intent = new Intent(this, AddBetActivity.class);
 
             startActivity(intent);
+        });
+        BetClickListener betClickListener = new BetClickListener() {
+            @Override
+            public void onBetClick(int position) {
+                Bet bet = bets.get(position);
+                // todo maybe we need to change title to bet id
+                Intent intent = new Intent(getContext(), BetDetailActivity.class);// todo check if this work?
+                intent.putExtra("title", bet.getTitle());
+                intent.putExtra("description", bet.getDescription());
+                intent.putExtra("amount", bet.getBetPrice());
+                intent.putExtra("status", bet.getBetStatus());
+                intent.putExtra("participant", bet.getParticipant1() + ", " + bet.getParticipant2());
+                intent.putExtra("startTime", bet.getBetStartTime());
+                intent.putExtra("endTime", bet.getBetEndTime());
+                startActivity(intent);
+            }
+        };
+
+        betAdaptor.setOnItemClickListener(betClickListener);
+
+        DatabaseReference ref = db.getReference("bets");
+        ref.addChildEventListener(new ChildEventListener() { // todo check if we need to order by something?
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Bet bet = snapshot.getValue(Bet.class);
+                if (bet.getParticipant1().equals(curUser) || bet.getParticipant2().equals(curUser)) {
+                    bets.add(bet);
+                    betAdaptor.notifyItemChanged(betAdaptor.getItemCount() - 1);
+                }
+
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
     }
 
@@ -81,5 +154,9 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public HomePageActivity getContext() {
+        return this;
     }
 }
