@@ -1,5 +1,7 @@
 package edu.northeastern.anybet.finalProject;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,17 +14,33 @@ import android.widget.Spinner;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.northeastern.anybet.R;
+import edu.northeastern.anybet.finalProject.realtimeDatabase.models.Bet;
 
 
 public class HomePageActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private View btnAddNewBet;
     private Spinner spinnerBetStatus;
+    FirebaseDatabase db;
+    RecyclerView betsRecyclerView;
+    BetAdaptor betAdaptor;
+    List<Bet> bets;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anybet_homepage);
+
+        db = FirebaseDatabase.getInstance();
+        bets = new ArrayList<>();
+        betsRecyclerView = findViewById(R.id.recyclerViewBetHomePage);
+        betsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        betAdaptor = new BetAdaptor(this.bets, this);
+        betsRecyclerView.setAdapter(betAdaptor);
 
 
         btnAddNewBet = findViewById(R.id.btn_addNewBet);
