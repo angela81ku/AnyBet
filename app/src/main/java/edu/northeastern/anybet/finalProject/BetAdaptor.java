@@ -15,13 +15,17 @@ import edu.northeastern.anybet.finalProject.realtimeDatabase.models.Bet;
 
 
 public class BetAdaptor extends RecyclerView.Adapter<BetViewHolder> {
-    private final List<Bet> bets;
-    private final Context context;
+    private List<Bet> bets;
+    private Context context;
     private BetClickListener listener;
 
     public BetAdaptor(List<Bet> bets, Context context) {
         this.bets = bets;
         this.context = context;
+    }
+
+    public void changeData(List<Bet> bets) {
+        this.bets = bets;
     }
 
     @NonNull

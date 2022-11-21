@@ -37,7 +37,9 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     RecyclerView betsRecyclerView;
     BetAdaptor betAdaptor;
     List<Bet> bets;
-
+    List<Bet> inProgressBets;
+    List<Bet> completedBets;
+    List<String> ids;
 
     TextView anybetUserUsername;
 
@@ -50,6 +52,9 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
         db = FirebaseDatabase.getInstance();
         bets = new ArrayList<>();
+        inProgressBets = new ArrayList<>();
+        completedBets = new ArrayList<>();
+        ids = new ArrayList<>();
         betsRecyclerView = findViewById(R.id.recyclerViewBetHomePage);
         betsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         betAdaptor = new BetAdaptor(this.bets, this);
@@ -59,6 +64,8 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         btnAddNewBet = findViewById(R.id.btn_addNewBet);
         spinnerBetStatus = findViewById(R.id.spinnerBetStatus);
         anybetUserUsername = findViewById(R.id.anybet_user_username2);
+
+        DatabaseReference ref = db.getReference("bets");
 
         Intent loginIntent = getIntent();
         if (loginIntent != null) {
@@ -77,6 +84,14 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String status = adapterView.getItemAtPosition(i).toString();
                 // todo: update recycler view base on the status
+                if (status.equals("All")) {
+                    betAdaptor.changeData(bets);
+                } else if (status.equals("Complete")) {
+                    betAdaptor.changeData(completedBets);
+                } else {
+                    betAdaptor.changeData(inProgressBets);
+                }
+                betAdaptor.notifyDataSetChanged();
             }
 
             @Override
@@ -95,8 +110,8 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onBetClick(int position) {
                 Bet bet = bets.get(position);
-                // todo maybe we need to change title to bet id
                 Intent intent = new Intent(getContext(), BetDetailActivity.class);// todo check if this work?
+                intent.putExtra("id", ids.get(position));
                 intent.putExtra("title", bet.getTitle());
                 intent.putExtra("description", bet.getDescription());
                 intent.putExtra("amount", bet.getBetPrice());
@@ -110,13 +125,21 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
         betAdaptor.setOnItemClickListener(betClickListener);
 
-        DatabaseReference ref = db.getReference("bets");
+
         ref.addChildEventListener(new ChildEventListener() { // todo check if we need to order by something?
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String key = snapshot.getKey();
                 Bet bet = snapshot.getValue(Bet.class);
                 if (bet.getParticipant1().equals(curUser) || bet.getParticipant2().equals(curUser)) {
+                    if (bet.getBetStatus().equals("in progress")) {
+                        inProgressBets.add(bet);
+                    } else {
+                        completedBets.add(bet);
+                    }
+                    System.out.println("key:" + key);
                     bets.add(bet);
+                    ids.add(snapshot.getKey());
                     betAdaptor.notifyItemChanged(betAdaptor.getItemCount() - 1);
                 }
 
