@@ -11,41 +11,30 @@
         android:id="@+id/btnReturn"
         android:layout_width="43dp"
         android:layout_height="43dp"
+        android:onClick="clickBackToHome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.04"
         app:srcCompat="@android:drawable/ic_menu_revert" />
-
-    <ImageButton
-        android:id="@+id/btnShare"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toEndOf="@+id/btnReturn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="?attr/actionModeShareDrawable" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputBetContent"
-        android:layout_width="240dp"
-        android:layout_height="43dp"
+        android:layout_width="266dp"
+        android:layout_height="42dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnShare"
-        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toEndOf="@+id/btnReturn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023">
+        app:layout_constraintVertical_bias="0.036">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/betContentTxt"
-            android:layout_width="240dp"
-            android:layout_height="43dp"
+            android:layout_width="260dp"
+            android:layout_height="40dp"
 
             android:hint="What are you betting today?" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -98,8 +87,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageMoneyFrame"
         app:layout_constraintEnd_toEndOf="@+id/imageMoneyFrame"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="@+id/imageMoneyFrame"
-        app:layout_constraintTop_toTopOf="@+id/imageMoneyFrame" />
+        app:layout_constraintTop_toTopOf="@+id/imageMoneyFrame"
+        app:layout_constraintVertical_bias="0.588" />
 
     <EditText
         android:id="@+id/editTextBetDes"
@@ -108,13 +99,13 @@
         android:ems="10"
         android:hint="detail of bet"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/datePickerButton"
+        app:layout_constraintBottom_toTopOf="@+id/btnDatePicker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgStartTime2"
         app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
 
     <Button
-        android:id="@+id/datePickerButton"
+        android:id="@+id/btnDatePicker"
         style="?android:spinnerStyle"
         android:layout_width="209dp"
         android:layout_height="47dp"
@@ -185,7 +176,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageMoneyFrame"
-        app:layout_constraintVertical_bias="0.848" />
+        app:layout_constraintVertical_bias="0.78" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"

@@ -50,7 +50,10 @@ public class AddBetActivity extends AppCompatActivity {
     public FirebaseDAO dao;
     public FirebaseDatabase db;
     private DatePickerDialog datePickerDialog;
-    private Button dateButton;
+    private Button btnDate;
+    private int year;
+    private int month;
+    private int day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +98,15 @@ public class AddBetActivity extends AppCompatActivity {
         betDescription = findViewById(R.id.editTextBetDes);
 
         initDatePicker();
-        dateButton = findViewById(R.id.datePickerButton);
-        dateButton.setText(getTodayDate());
+        btnDate = findViewById(R.id.btnDatePicker);
+        btnDate.setText(getTodayDate());
 
     }
-
+    public void clickBackToHome(View view){
+        Intent intent = new Intent(this, HomePageActivity.class);
+        //TODO: no data shown
+        startActivity(intent);
+    }
     public void clickCreateBet(View view){
         title = betTitle.getText().toString();
         price = betPrice.getText().toString();
@@ -200,42 +207,35 @@ public class AddBetActivity extends AppCompatActivity {
             latitude = location.getLatitude();
         }
     };
-    private String getTodayDate()
-    {
+    private void getDate(){
         Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
+        year = cal.get(Calendar.YEAR);
+        month = cal.get(Calendar.MONTH);
         month = month + 1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
+        day = cal.get(Calendar.DAY_OF_MONTH);
+    }
+    private String getTodayDate(){
+        getDate();
         return makeDateString(day, month, year);
     }
+    private void initDatePicker(){
 
-    private void initDatePicker()
-    {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
-        {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener(){
+
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day)
             {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
-                dateButton.setText(date);
+                btnDate.setText(date);
             }
         };
 
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-
-        datePickerDialog = new DatePickerDialog(this,  dateSetListener, year, month, day);
-
-
-    }
-
-    private String makeDateString(int day, int month, int year)
-    {
-        return FormatMonth(month) + " " + day + " ," + year;
+        getDate();
+        datePickerDialog = new DatePickerDialog(this,  dateSetListener, year, month -1, day);
+        // to avoid user select a time prior than today, because it doesn't make sense to
+        // make a history bet
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
     }
 
     private String FormatMonth(int month)
@@ -266,7 +266,10 @@ public class AddBetActivity extends AppCompatActivity {
             return "DEC";
 
     }
-
+    private String makeDateString(int day, int month, int year)
+    {
+        return FormatMonth(month) + " " + day + " ," + year;
+    }
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
