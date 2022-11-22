@@ -6,22 +6,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import edu.northeastern.anybet.R;
 public class BetDetailActivity extends AppCompatActivity {
@@ -36,9 +46,19 @@ public class BetDetailActivity extends AppCompatActivity {
     Button completeBet;
     ImageView back;
     ImageView share;
+    ImageView imgLocationMap;
+
     FirebaseDatabase db;
+
     private ClipboardManager myClipboard;
     private ClipData myClip;
+
+
+    private static final String TAG = "BetDetailActivity";
+
+    private static final String STATIC_MAP_URL_FORMAT = "https://maps.googleapis.com/maps/api/staticmap?center=%s,%s&zoom=15&size=300x300&markers=color:red|%s,%s&key=AIzaSyA0NYTCZVBDNbwLqc0KEH9p1_ON1USdfHE";
+    private static final Double DEFAULT_LATITUDE = 40.714728;
+    private static final Double DEFAULT_LONGITUDE = -73.998672;
 
 
     @Override
@@ -57,6 +77,7 @@ public class BetDetailActivity extends AppCompatActivity {
         completeBet = (Button)findViewById(R.id.btnCompleteBet);
         back = findViewById(R.id.btnReturn);
         share = findViewById(R.id.btnShare);
+        imgLocationMap = findViewById(R.id.imgLocationMap);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +95,10 @@ public class BetDetailActivity extends AppCompatActivity {
             participant.setText(betIntent.getStringExtra("participant"));
             startTime.setText(betIntent.getStringExtra("startTime"));
             endTime.setText(betIntent.getStringExtra("endTime"));
+            Double latitude = betIntent.getDoubleExtra("latitude", DEFAULT_LATITUDE);
+            Double longitude = betIntent.getDoubleExtra("longitude", DEFAULT_LONGITUDE);
+            loadLocationMap(imgLocationMap, latitude, longitude);
+
             if (status.getText().equals("complete")) {
                 completeBet.setText("Complete Bet");
             } else {
@@ -123,10 +148,26 @@ public class BetDetailActivity extends AppCompatActivity {
                 }
             });
         }
-
-
-
     }
 
+    private void loadLocationMap(ImageView imageView, Double latitude, Double longitude) {
+        Executor executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(() -> {
+            Bitmap bitmap = null;
+            String url = String.format(STATIC_MAP_URL_FORMAT, latitude, longitude, latitude, longitude);
+            try (InputStream in = new URL(url).openStream()) {
+                bitmap = BitmapFactory.decodeStream(in);
+            } catch (IOException e) {
+                Log.d(TAG, "Unable to open static map API");
+            }
+
+            Bitmap finalBitmap = bitmap;
+            handler.post(() -> {
+                imageView.setImageBitmap(finalBitmap);
+            });
+        });
+    }
 
 }

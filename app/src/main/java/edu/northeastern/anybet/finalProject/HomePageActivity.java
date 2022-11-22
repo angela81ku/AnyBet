@@ -119,6 +119,8 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
                 intent.putExtra("participant", bet.getParticipant1() + ", " + bet.getParticipant2());
                 intent.putExtra("startTime", bet.getBetStartTime());
                 intent.putExtra("endTime", bet.getBetEndTime());
+                intent.putExtra("latitude", bet.getLatitude());
+                intent.putExtra("longitude", bet.getLongitude());
                 startActivity(intent);
             }
         };

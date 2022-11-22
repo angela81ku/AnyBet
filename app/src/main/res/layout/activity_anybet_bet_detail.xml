@@ -180,6 +180,18 @@
         app:srcCompat="@drawable/location" />
 
     <ImageView
+        android:id="@+id/imgLocationMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCompleteBet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toEndOf="@+id/imgLocation"
+        app:layout_constraintTop_toBottomOf="@+id/imgEndTime"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <ImageView
         android:id="@+id/imgProgress"
         android:layout_width="43dp"
         android:layout_height="43dp"
