@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.location.LocationListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 
 import edu.northeastern.anybet.R;
@@ -46,6 +49,8 @@ public class AddBetActivity extends AppCompatActivity {
     public String description;
     public FirebaseDAO dao;
     public FirebaseDatabase db;
+    private DatePickerDialog datePickerDialog;
+    private Button dateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +94,9 @@ public class AddBetActivity extends AppCompatActivity {
         participant2 = findViewById(R.id.editTextUsername);
         betDescription = findViewById(R.id.editTextBetDes);
 
-
+        initDatePicker();
+        dateButton = findViewById(R.id.datePickerButton);
+        dateButton.setText(getTodayDate());
 
     }
 
@@ -193,4 +200,75 @@ public class AddBetActivity extends AppCompatActivity {
             latitude = location.getLatitude();
         }
     };
+    private String getTodayDate()
+    {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
+
+    private void initDatePicker()
+    {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                dateButton.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        datePickerDialog = new DatePickerDialog(this,  dateSetListener, year, month, day);
+
+
+    }
+
+    private String makeDateString(int day, int month, int year)
+    {
+        return FormatMonth(month) + " " + day + " ," + year;
+    }
+
+    private String FormatMonth(int month)
+    {
+        if(month == 1)
+            return "JAN";
+        else if(month == 2)
+            return "FEB";
+        else if(month == 3)
+            return "MAR";
+        else if(month == 4)
+            return "APR";
+        else if(month == 5)
+            return "MAY";
+        else if(month == 6)
+            return "JUN";
+        else if(month == 7)
+            return "JUL";
+        else if(month == 8)
+            return "AUG";
+        else if(month == 9)
+            return "SEP";
+        else if(month == 10)
+            return "OCT";
+        else if(month == 11)
+            return "NOV";
+        else
+            return "DEC";
+
+    }
+
+    public void openDatePicker(View view)
+    {
+        datePickerDialog.show();
+    }
 }
