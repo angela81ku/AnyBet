@@ -22,8 +22,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputBetContent"
-        android:layout_width="266dp"
-        android:layout_height="42dp"
+        android:layout_width="265dp"
+        android:layout_height="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
@@ -33,8 +33,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/betContentTxt"
-            android:layout_width="260dp"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
             android:hint="What are you betting today?" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,7 +73,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageMoneyFrame"
         app:layout_constraintTop_toBottomOf="@+id/textInputBetContent"
-        app:layout_constraintVertical_bias="0.076"
+        app:layout_constraintVertical_bias="0.035"
         app:srcCompat="@drawable/gold_thumbup" />
 
     <EditText
