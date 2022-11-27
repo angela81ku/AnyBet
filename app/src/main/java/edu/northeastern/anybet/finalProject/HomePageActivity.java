@@ -37,8 +37,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     RecyclerView betsRecyclerView;
     BetAdaptor betAdaptor;
     List<Bet> bets;
-    List<Bet> inProgressBets;
-    List<Bet> completedBets;
     List<String> ids;
 
     TextView anybetUserUsername;
@@ -52,8 +50,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
         db = FirebaseDatabase.getInstance();
         bets = new ArrayList<>();
-        inProgressBets = new ArrayList<>();
-        completedBets = new ArrayList<>();
         ids = new ArrayList<>();
         betsRecyclerView = findViewById(R.id.recyclerViewBetHomePage);
         betsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -78,18 +74,40 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
                 android.R.layout.simple_spinner_item,
                 betStatus);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        BetClickListener betClickListener = new BetClickListener() {
+            @Override
+            public void onBetClick(int position) {
+                Bet bet = bets.get(position);
+                Intent intent = new Intent(getContext(), BetDetailActivity.class);
+                intent.putExtra("id", ids.get(position));
+                intent.putExtra("title", bet.getTitle());
+                intent.putExtra("description", bet.getDescription());
+                intent.putExtra("amount", bet.getBetPrice());
+                intent.putExtra("status", bet.getBetStatus());
+                intent.putExtra("participant", bet.getParticipant1() + ", " + bet.getParticipant2());
+                intent.putExtra("startTime", bet.getBetStartTime());
+                intent.putExtra("endTime", bet.getBetEndTime());
+                intent.putExtra("latitude", bet.getLatitude());
+                intent.putExtra("longitude", bet.getLongitude());
+                startActivity(intent);
+            }
+        };
+
+        betAdaptor.setOnItemClickListener(betClickListener);
+        ref.addChildEventListener(addFirebaseListener("All"));
+
+
         spinnerBetStatus.setAdapter(adapter);
         spinnerBetStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String status = adapterView.getItemAtPosition(i).toString();
-                // todo: update recycler view base on the status
                 if (status.equals("All")) {
-                    betAdaptor.changeData(bets);
+                    ref.addChildEventListener(ref.addChildEventListener(addFirebaseListener("All")));
                 } else if (status.equals("Complete")) {
-                    betAdaptor.changeData(completedBets);
+                    ref.addChildEventListener(addFirebaseListener("complete"));
                 } else {
-                    betAdaptor.changeData(inProgressBets);
+                    ref.addChildEventListener(addFirebaseListener("in progress"));
                 }
                 betAdaptor.notifyDataSetChanged();
             }
@@ -106,41 +124,39 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             intent.putExtra("username", curUser);
             startActivity(intent);
         });
-        BetClickListener betClickListener = new BetClickListener() {
-            @Override
-            public void onBetClick(int position) {
-                Bet bet = bets.get(position);
-                Intent intent = new Intent(getContext(), BetDetailActivity.class);// todo check if this work?
-                intent.putExtra("id", ids.get(position));
-                intent.putExtra("title", bet.getTitle());
-                intent.putExtra("description", bet.getDescription());
-                intent.putExtra("amount", bet.getBetPrice());
-                intent.putExtra("status", bet.getBetStatus());
-                intent.putExtra("participant", bet.getParticipant1() + ", " + bet.getParticipant2());
-                intent.putExtra("startTime", bet.getBetStartTime());
-                intent.putExtra("endTime", bet.getBetEndTime());
-                intent.putExtra("latitude", bet.getLatitude());
-                intent.putExtra("longitude", bet.getLongitude());
-                startActivity(intent);
-            }
-        };
-
-        betAdaptor.setOnItemClickListener(betClickListener);
+    }
 
 
-        ref.addChildEventListener(new ChildEventListener() { // todo check if we need to order by something?
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+    }
+
+    public HomePageActivity getContext() {
+        return this;
+    }
+
+    private ChildEventListener addFirebaseListener(String status) {
+        bets.clear();
+        ChildEventListener listener =  new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String key = snapshot.getKey();
                 Bet bet = snapshot.getValue(Bet.class);
                 if (bet.getParticipant1().equals(curUser) || bet.getParticipant2().equals(curUser)) {
-                    if (bet.getBetStatus().equals("in progress")) {
-                        inProgressBets.add(bet);
-                    } else {
-                        completedBets.add(bet);
+                    if (status.equals("All") || bet.getBetStatus().equals(status)) {
+                        bets.add(bet);
                     }
-                    System.out.println("key:" + key);
-                    bets.add(bet);
                     ids.add(snapshot.getKey());
                     betAdaptor.notifyItemChanged(betAdaptor.getItemCount() - 1);
                 }
@@ -167,21 +183,7 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
-    }
-
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-
-    public HomePageActivity getContext() {
-        return this;
+        };
+        return listener;
     }
 }

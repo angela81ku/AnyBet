@@ -100,9 +100,9 @@ public class BetDetailActivity extends AppCompatActivity {
             loadLocationMap(imgLocationMap, latitude, longitude);
 
             if (status.getText().equals("complete")) {
-                completeBet.setText("Complete Bet");
-            } else {
                 completeBet.setText("Bet Completed");
+            } else {
+                completeBet.setText("Complete Bet");
             }
             completeBet.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -133,7 +133,6 @@ public class BetDetailActivity extends AppCompatActivity {
             share.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // todo share message, maybe something like copy to the keyboard
                     myClipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                     String text;
                     text = "Bet: " + betIntent.getStringExtra("title") +"\n" +
@@ -141,10 +140,14 @@ public class BetDetailActivity extends AppCompatActivity {
                             "start from: " + betIntent.getStringExtra("startTime") + "\n" +
                             "To: " + betIntent.getStringExtra("endTime") + "\n";
 
-                    myClip = ClipData.newPlainText("text", text);
-                    myClipboard.setPrimaryClip(myClip);
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+                    sendIntent.setType("text/plain");
 
-                    Toast.makeText(getApplicationContext(), "Share Message generated",Toast.LENGTH_SHORT).show();
+                    Intent shareIntent = Intent.createChooser(sendIntent, null);
+                    startActivity(shareIntent);
+
                 }
             });
         }
