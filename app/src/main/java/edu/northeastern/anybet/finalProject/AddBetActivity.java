@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
@@ -51,6 +52,7 @@ public class AddBetActivity extends AppCompatActivity {
     public FirebaseDatabase db;
     private DatePickerDialog datePickerDialog;
     private Button btnDate;
+    private ImageView btnBack;
     private int year;
     private int month;
     private int day;
@@ -100,13 +102,16 @@ public class AddBetActivity extends AppCompatActivity {
         initDatePicker();
         btnDate = findViewById(R.id.btnDatePicker);
         btnDate.setText(getTodayDate());
+        btnBack = findViewById(R.id.btnReturn);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
-    public void clickBackToHome(View view){
-        Intent intent = new Intent(this, HomePageActivity.class);
-        //TODO: no data shown
-        startActivity(intent);
-    }
+
     public void clickCreateBet(View view){
         title = betTitle.getText().toString();
         price = betPrice.getText().toString();
