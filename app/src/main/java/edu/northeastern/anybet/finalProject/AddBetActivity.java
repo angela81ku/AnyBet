@@ -34,22 +34,24 @@ import edu.northeastern.anybet.finalProject.realtimeDatabase.models.BetUser;
 
 public class AddBetActivity extends AppCompatActivity {
 
-    public EditText betTitle;
-    public EditText betPrice;
-    public String participant1;
-    public EditText participant2;
-    public double longitude;
-    public double latitude;
+    private EditText betTitle;
+    private EditText betPrice;
+    private String participant1;
+    private EditText participant2;
+    private double longitude;
+    private double latitude;
     private LocationManager locationManager;
     private String locationProvider = null;
-    public String betStartTime;
-    public EditText betDescription;
-    public String title;
-    public String price;
-    public String otherParticipant;
-    public String description;
-    public FirebaseDAO dao;
-    public FirebaseDatabase db;
+    private String betStartTime;
+    private EditText betDescription;
+    private String title;
+    private String price;
+    private String otherParticipant;
+    private String description;
+    private String startDate;
+    private String endDate;
+    private FirebaseDAO dao;
+    private FirebaseDatabase db;
     private DatePickerDialog datePickerDialog;
     private Button btnDate;
     private ImageView btnBack;
@@ -115,11 +117,14 @@ public class AddBetActivity extends AppCompatActivity {
     public void clickCreateBet(View view){
         title = betTitle.getText().toString();
         price = betPrice.getText().toString();
+        startDate = getTodayDate();
+        endDate = btnDate.getText().toString();
         otherParticipant = participant2.getText().toString();
         description = betDescription.getText().toString();
-        LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        betStartTime = dateTime.format(formatter);
+
+//        LocalDateTime dateTime = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//        betStartTime = dateTime.format(formatter);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED ||
@@ -159,14 +164,15 @@ public class AddBetActivity extends AppCompatActivity {
                         if (task.getResult().getValue(BetUser.class) == null) {
                             Toast.makeText(this, "The user is unknown.", Toast.LENGTH_SHORT).show();
                         }else {
-                            Bet bet = new Bet(title, price, participant1, otherParticipant,betStartTime, longitude, latitude,description);
+                            Bet bet = new Bet(title, price, participant1, otherParticipant, startDate, endDate, longitude, latitude,description);
                             dao.addBet(bet);
                             Toast.makeText(this, "The bet is created.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(this, BetDetailActivity.class);
-
-                            // TODO: Find out what to pass (through intent )to the bet detail page
-
-                            startActivity(intent);
+//                            Intent intent = new Intent(this, BetDetailActivity.class);
+//
+//                            // TODO: Find out what to pass (through intent )to the bet detail page
+//
+//                            startActivity(intent);
+                            finish();
                         }
                     });
 

@@ -21,14 +21,14 @@ public class Bet {
     }
 
     public Bet(String title, String betPrice, String participant1, String participant2,
-               String betStartTime, double longitude, double latitude, String description) {
+               String betStartTime, String betEndTime, double longitude, double latitude, String description) {
         this.title = title;
         this.betPrice = betPrice;
         this.participant1 = participant1;
         this.participant2 = participant2;
         this.betStatus = "in progress";
         this.betStartTime = betStartTime;
-        this.betEndTime = "";
+        this.betEndTime = betEndTime;
         this.longitude = longitude;
         this.latitude = latitude;
         this.description = description;

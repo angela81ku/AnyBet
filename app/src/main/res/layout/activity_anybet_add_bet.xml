@@ -81,7 +81,7 @@
         android:layout_height="77dp"
         android:ems="10"
         android:inputType="numberSigned"
-        android:text="US100"
+        android:text="100"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageMoneyFrame"
