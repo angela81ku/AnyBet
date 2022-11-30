@@ -1,5 +1,6 @@
 package edu.northeastern.anybet.finalProject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -14,16 +15,23 @@ import android.location.LocationManager;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -32,17 +40,15 @@ import edu.northeastern.anybet.finalProject.realtimeDatabase.DAO.FirebaseDAO;
 import edu.northeastern.anybet.finalProject.realtimeDatabase.models.Bet;
 import edu.northeastern.anybet.finalProject.realtimeDatabase.models.BetUser;
 
-public class AddBetActivity extends AppCompatActivity {
+public class AddBetActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private EditText betTitle;
     private EditText betPrice;
     private String participant1;
-    private EditText participant2;
     private double longitude;
     private double latitude;
     private LocationManager locationManager;
     private String locationProvider = null;
-    private String betStartTime;
     private EditText betDescription;
     private String title;
     private String price;
@@ -58,6 +64,9 @@ public class AddBetActivity extends AppCompatActivity {
     private int year;
     private int month;
     private int day;
+    private ArrayList<String> userList = new ArrayList<>();
+    private Spinner userSpin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,10 +104,15 @@ public class AddBetActivity extends AppCompatActivity {
         if (intent != null) {
             participant1 = intent.getStringExtra("username");
         }
+        db.getReference("betUsers").orderByChild("username").addValueEventListener(userListListener);
 
         betTitle = findViewById(R.id.betContentTxt);
         betPrice = findViewById(R.id.editTextTextInputNumberSigned);
-        participant2 = findViewById(R.id.editTextUsername);
+        userSpin = findViewById(R.id.userSpinner);
+        userSpin.setOnItemSelectedListener(this);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, userList);
+        arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+
         betDescription = findViewById(R.id.editTextBetDes);
 
         initDatePicker();
@@ -112,6 +126,7 @@ public class AddBetActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     public void clickCreateBet(View view){
@@ -119,12 +134,7 @@ public class AddBetActivity extends AppCompatActivity {
         price = betPrice.getText().toString();
         startDate = getTodayDate();
         endDate = btnDate.getText().toString();
-        otherParticipant = participant2.getText().toString();
         description = betDescription.getText().toString();
-
-//        LocalDateTime dateTime = LocalDateTime.now();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//        betStartTime = dateTime.format(formatter);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED ||
@@ -167,11 +177,6 @@ public class AddBetActivity extends AppCompatActivity {
                             Bet bet = new Bet(title, price, participant1, otherParticipant, startDate, endDate, longitude, latitude,description);
                             dao.addBet(bet);
                             Toast.makeText(this, "The bet is created.", Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(this, BetDetailActivity.class);
-//
-//                            // TODO: Find out what to pass (through intent )to the bet detail page
-//
-//                            startActivity(intent);
                             finish();
                         }
                     });
@@ -283,5 +288,39 @@ public class AddBetActivity extends AppCompatActivity {
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
+    }
+
+    private ValueEventListener userListListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            userList.clear();
+            for (DataSnapshot u : snapshot.getChildren()) {
+                String curName = u.getValue(BetUser.class).getUsername();
+                if (!curName.equals(participant1)) {
+                    userList.add(curName);
+                }
+            }
+            ArrayAdapter arrayAdapter = new ArrayAdapter(AddBetActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, userList);
+            arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+            userSpin.setAdapter(arrayAdapter);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        otherParticipant = parent.getItemAtPosition(position).toString();
+        System.out.println("the other P");
+        System.out.println(otherParticipant);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

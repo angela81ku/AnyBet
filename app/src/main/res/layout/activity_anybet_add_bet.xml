@@ -43,12 +43,10 @@
         android:layout_width="101dp"
         android:layout_height="111dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@id/editTextUsername"
         app:layout_constraintEnd_toStartOf="@+id/imageGoldThumbright"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageGoldThumbleft"
         app:layout_constraintTop_toBottomOf="@+id/textInputBetContent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/money_frame" />
 
     <ImageView
@@ -100,8 +98,9 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/btnDatePicker"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.282"
         app:layout_constraintStart_toEndOf="@+id/imgStartTime2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/userSpinner" />
 
     <Button
         android:id="@+id/btnDatePicker"
@@ -115,20 +114,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/btnCompleteBet"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toEndOf="@+id/imgStartTime"
         app:layout_constraintTop_toBottomOf="@+id/editTextBetDes" />
-
-    <EditText
-        android:id="@+id/editTextUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="username"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBetDes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgParticipant"
-        app:layout_constraintTop_toBottomOf="@id/imageGoldThumbright" />
 
     <ImageView
         android:id="@+id/imgStartTime2"
@@ -185,5 +173,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgStartTime" />
+
+    <Spinner
+        android:id="@+id/userSpinner"
+        android:layout_width="225dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="56dp"
+        android:gravity="center"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imgParticipant"
+        app:layout_constraintTop_toBottomOf="@+id/imageMoneyFrame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
