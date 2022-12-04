@@ -22,7 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import edu.northeastern.anybet.R;
 import edu.northeastern.anybet.a8.realtimeDatabase.models.Message;
@@ -94,9 +96,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         };
 
         betAdaptor.setOnItemClickListener(betClickListener);
-        ref.addChildEventListener(addFirebaseListener("All"));
-
-
         spinnerBetStatus.setAdapter(adapter);
         spinnerBetStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -119,7 +118,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         });
 
         btnAddNewBet.setOnClickListener(view -> {
-
             Intent intent = new Intent(this, AddBetActivity.class);
             intent.putExtra("username", curUser);
             startActivity(intent);
@@ -148,13 +146,15 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
     private ChildEventListener addFirebaseListener(String status) {
         bets.clear();
+        ids.clear();
+        Set<String> set = new HashSet<>();
         ChildEventListener listener =  new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String key = snapshot.getKey();
                 Bet bet = snapshot.getValue(Bet.class);
                 if (bet.getParticipant1().equals(curUser) || bet.getParticipant2().equals(curUser)) {
-                    if (status.equals("All") || bet.getBetStatus().equals(status)) {
+                    if ((status.equals("All") || bet.getBetStatus().equals(status)) && set.add(key)) {
                         bets.add(bet);
                     }
                     ids.add(snapshot.getKey());
