@@ -56,7 +56,7 @@ public class BetDetailActivity extends AppCompatActivity {
 
     private static final String TAG = "BetDetailActivity";
 
-    private static final String STATIC_MAP_URL_FORMAT = "https://maps.googleapis.com/maps/api/staticmap?center=%s,%s&zoom=15&size=300x300&markers=color:red|%s,%s&key=AIzaSyA0NYTCZVBDNbwLqc0KEH9p1_ON1USdfHE";
+    private static final String STATIC_MAP_URL_FORMAT = "https://maps.googleapis.com/maps/api/staticmap?center=%s,%s&zoom=14&size=600x400&markers=color:red|%s,%s&key=AIzaSyA0NYTCZVBDNbwLqc0KEH9p1_ON1USdfHE";
     private static final Double DEFAULT_LATITUDE = 40.714728;
     private static final Double DEFAULT_LONGITUDE = -73.998672;
 
