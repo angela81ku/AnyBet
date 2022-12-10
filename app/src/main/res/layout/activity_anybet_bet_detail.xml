@@ -32,40 +32,51 @@
         app:srcCompat="?attr/actionModeShareDrawable" />
 
     <ImageView
+        android:id="@+id/imageGoldThumbright"
+        android:layout_width="95dp"
+        android:layout_height="127dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShare"
+        app:srcCompat="@drawable/gold_thumbup" />
+
+    <ImageView
         android:id="@+id/imageMoneyFrame"
         android:layout_width="142dp"
         android:layout_height="129dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/imageGoldThumbright"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageGoldThumbleft"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@id/tvBetTitle"
         app:srcCompat="@drawable/money_frame" />
 
     <ImageView
         android:id="@+id/imageGoldThumbleft"
         android:layout_width="95dp"
         android:layout_height="127dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginBottom="452dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageMoneyFrame"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageGoldThumbright"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/btnReturn"
         app:srcCompat="@drawable/gold_thumbup" />
 
-    <ImageView
-        android:id="@+id/imageGoldThumbright"
-        android:layout_width="95dp"
-        android:layout_height="127dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.01"
-        app:srcCompat="@drawable/gold_thumbup" />
+    <TextView
+        android:id="@+id/tvBetAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="US100"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageMoneyFrame"
+        app:layout_constraintEnd_toEndOf="@+id/imageMoneyFrame"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="@+id/imageMoneyFrame"
+        app:layout_constraintTop_toTopOf="@+id/imageMoneyFrame"
+        app:layout_constraintVertical_bias="0.525" />
 
     <Button
         android:id="@+id/btnCompleteBet"
@@ -80,31 +91,35 @@
         app:layout_constraintTop_toBottomOf="@+id/imgStartTime"
         app:layout_constraintVertical_bias="0.898" />
 
+
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="383dp"
-        android:layout_height="55dp"
+        android:id="@+id/tvBetDesc"
+        android:layout_width="263dp"
+        android:layout_height="40dp"
         android:text="Bet Content placeholder"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvProgressStatus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.275"
+        app:layout_constraintStart_toEndOf="@+id/imgProgress2"
+        app:layout_constraintTop_toBottomOf="@+id/imageMoneyFrame"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/tvProgressStatus"
+        android:layout_width="167dp"
+        android:layout_height="35dp"
+        android:text="In Progress"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toEndOf="@+id/imgProgress"
+        app:layout_constraintTop_toBottomOf="@+id/imageMoneyFrame"
+        app:layout_constraintVertical_bias="0.12" />
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="US100"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageMoneyFrame"
-        app:layout_constraintEnd_toEndOf="@+id/imageMoneyFrame"
-        app:layout_constraintStart_toStartOf="@+id/imageMoneyFrame"
-        app:layout_constraintTop_toTopOf="@+id/imageMoneyFrame" />
-
-    <TextView
-        android:id="@+id/txtViewParticipant"
+        android:id="@+id/tvParticipant"
         android:layout_width="167dp"
         android:layout_height="35dp"
         android:layout_marginTop="23dp"
@@ -112,34 +127,105 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.336"
+        app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewProgressStatus"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvProgressStatus"
+        app:layout_constraintVertical_bias="0.007" />
 
     <TextView
-        android:id="@+id/txtViewProgressStatus"
+        android:id="@+id/tvEndTime"
         android:layout_width="167dp"
-        android:layout_height="35dp"
-        android:text="In Progress"
-        android:textSize="16sp"
+        android:layout_height="38dp"
+        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toEndOf="@+id/imgProgress"
-        app:layout_constraintTop_toBottomOf="@+id/imageMoneyFrame"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStartTime"
+        app:layout_constraintVertical_bias="0.098" />
+
+    <TextView
+        android:id="@+id/tvStartTime"
+        android:layout_width="167dp"
+        android:layout_height="35dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvParticipant"
+        app:layout_constraintVertical_bias="0.066" />
+
+    <ImageView
+        android:id="@+id/imgLocationMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCompleteBet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toEndOf="@+id/imgLocation"
+        app:layout_constraintTop_toBottomOf="@+id/imgEndTime"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <ImageView
+        android:id="@+id/imgProgress"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageGoldThumbleft"
+        app:layout_constraintVertical_bias="0.125"
+        app:srcCompat="@drawable/progress" />
+
+    <ImageView
+        android:id="@+id/imgProgress2"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageGoldThumbleft"
+        app:layout_constraintVertical_bias="0.016"
+        app:srcCompat="@drawable/detail" />
+
+    <ImageView
+        android:id="@+id/imgLocation"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgEndTime"
+        app:layout_constraintVertical_bias="0.117"
+        app:srcCompat="@drawable/location" />
+
+    <ImageView
+        android:id="@+id/imgEndTime"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgStartTime"
+        app:layout_constraintVertical_bias="0.07"
+        app:srcCompat="@drawable/endtime" />
 
     <ImageView
         android:id="@+id/imgParticipant"
         android:layout_width="43dp"
         android:layout_height="43dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txtViewParticipant"
-        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintEnd_toStartOf="@+id/tvParticipant"
+        app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgProgress"
-        app:layout_constraintVertical_bias="0.043"
+        app:layout_constraintVertical_bias="0.047"
         app:srcCompat="@drawable/money_man" />
 
     <ImageView
@@ -149,46 +235,22 @@
         android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgParticipant"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/starttime" />
 
-    <ImageView
-        android:id="@+id/imgEndTime"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
+    <TextView
+        android:id="@+id/tvBetTitle"
+        android:layout_width="170dp"
+        android:layout_height="47dp"
+        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgStartTime"
-        app:layout_constraintVertical_bias="0.062"
-        app:srcCompat="@drawable/endtime" />
-
-    <ImageView
-        android:id="@+id/imgLocation"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgEndTime"
-        app:layout_constraintVertical_bias="0.089"
-        app:srcCompat="@drawable/location" />
-
-    <ImageView
-        android:id="@+id/imgProgress"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageGoldThumbleft"
-        app:layout_constraintVertical_bias="0.061"
-        app:srcCompat="@drawable/progress" />
+        app:layout_constraintEnd_toStartOf="@+id/btnShare"
+        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintStart_toEndOf="@+id/btnReturn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.017" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

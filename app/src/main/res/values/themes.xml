@@ -7,7 +7,7 @@
         <item name="colorOnPrimary">@color/gold</item>
         <item name="android:colorBackground">@color/gold</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/pink</item>
+        <item name="colorSecondary">@color/purple</item>
         <item name="colorSecondaryVariant">@color/darkPink</item>
         <item name="colorOnSecondary">@color/lightBlack</item>
         <!-- Status bar color. -->

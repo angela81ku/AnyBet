@@ -13,45 +13,36 @@
         android:layout_height="43dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.04"
         app:srcCompat="@android:drawable/ic_menu_revert" />
-
-    <ImageButton
-        android:id="@+id/btnShare"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toEndOf="@+id/btnReturn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="?attr/actionModeShareDrawable" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputBetContent"
-        android:layout_width="381dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="550dp"
+        android:layout_width="265dp"
+        android:layout_height="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toEndOf="@+id/btnReturn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.036">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/betContentTxt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:hint="What are you betting today?" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/imageMoneyFrame"
-        android:layout_width="142dp"
-        android:layout_height="129dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerFriendChooser"
+        android:layout_width="101dp"
+        android:layout_height="111dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/imageGoldThumbright"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageGoldThumbleft"
@@ -60,77 +51,105 @@
 
     <ImageView
         android:id="@+id/imageGoldThumbleft"
-        android:layout_width="95dp"
-        android:layout_height="127dp"
-        android:layout_marginBottom="452dp"
+        android:layout_width="79dp"
+        android:layout_height="89dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageMoneyFrame"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputBetContent"
-        app:layout_constraintVertical_bias="0.774"
+        app:layout_constraintTop_toBottomOf="@+id/btnReturn"
+        app:layout_constraintVertical_bias="0.063"
         app:srcCompat="@drawable/gold_thumbup" />
 
     <ImageView
         android:id="@+id/imageGoldThumbright"
-        android:layout_width="95dp"
-        android:layout_height="127dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="82dp"
+        android:layout_height="81dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageMoneyFrame"
         app:layout_constraintTop_toBottomOf="@+id/textInputBetContent"
+        app:layout_constraintVertical_bias="0.035"
         app:srcCompat="@drawable/gold_thumbup" />
 
     <EditText
         android:id="@+id/editTextTextInputNumberSigned"
-        android:layout_width="91dp"
-        android:layout_height="71dp"
+        android:layout_width="87dp"
+        android:layout_height="77dp"
         android:ems="10"
         android:inputType="numberSigned"
-        android:text="US100"
+        android:text="100"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageMoneyFrame"
         app:layout_constraintEnd_toEndOf="@+id/imageMoneyFrame"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="@+id/imageMoneyFrame"
-        app:layout_constraintTop_toTopOf="@+id/imageMoneyFrame" />
+        app:layout_constraintTop_toTopOf="@+id/imageMoneyFrame"
+        app:layout_constraintVertical_bias="0.588" />
 
-    <Spinner
-        android:id="@+id/spinnerFriendChooser"
-        android:layout_width="257dp"
-        android:layout_height="41dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <EditText
+        android:id="@+id/editTextBetDes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="detail of bet"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/btnDatePicker"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.431" />
+        app:layout_constraintHorizontal_bias="0.282"
+        app:layout_constraintStart_toEndOf="@+id/imgStartTime2"
+        app:layout_constraintTop_toBottomOf="@+id/userSpinner" />
+
+    <Button
+        android:id="@+id/btnDatePicker"
+        style="?android:spinnerStyle"
+        android:layout_width="209dp"
+        android:layout_height="47dp"
+
+        android:onClick="openDatePicker"
+        android:text="JAN 01 2020"
+        android:textColor="@color/darkBlack"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCompleteBet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toEndOf="@+id/imgStartTime"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBetDes" />
 
     <ImageView
-        android:id="@+id/imgParticipant"
+        android:id="@+id/imgStartTime2"
         android:layout_width="43dp"
         android:layout_height="43dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerFriendChooser"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintBottom_toTopOf="@+id/imgStartTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageGoldThumbleft"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/money_man" />
+        app:layout_constraintTop_toBottomOf="@+id/imgParticipant"
+        app:srcCompat="@drawable/detail" />
 
     <ImageView
         android:id="@+id/imgStartTime"
         android:layout_width="43dp"
         android:layout_height="43dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnCompleteBet"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgParticipant"
-        app:layout_constraintVertical_bias="0.005"
+        app:layout_constraintTop_toBottomOf="@+id/imgStartTime2"
         app:srcCompat="@drawable/endtime" />
+
+    <ImageView
+        android:id="@+id/imgParticipant"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toTopOf="@+id/imgStartTime2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageGoldThumbleft"
+        app:srcCompat="@drawable/money_man" />
 
     <Button
         android:id="@+id/btnCompleteBet"
@@ -143,7 +162,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgStartTime"
-        app:layout_constraintVertical_bias="0.097" />
+        app:layout_constraintTop_toBottomOf="@+id/imageMoneyFrame"
+        app:layout_constraintVertical_bias="0.78" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btnCompleteBet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgStartTime" />
+
+    <Spinner
+        android:id="@+id/userSpinner"
+        android:layout_width="225dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="56dp"
+        android:gravity="center"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imgParticipant"
+        app:layout_constraintTop_toBottomOf="@+id/imageMoneyFrame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
